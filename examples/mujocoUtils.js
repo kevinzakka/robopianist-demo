@@ -27,15 +27,13 @@ export function setupGUI(parentContext) {
   // Add scene selection dropdown.
   let reload = reloadFunc.bind(parentContext);
   parentContext.gui.add(parentContext.params, 'song', {
-    "TwinkleTwinkle": "twinkle_twinkle_actions.npy"
-  }).name('Example Scene').onChange((value) => {
+    "TwinkleTwinkle": "twinkle_twinkle_actions.npy", "AlsoTwinkleTwinkle": "twinkle_twinkle_actions.npy"
+  }).name('Song').onChange((value) => {
     parentContext.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+value, (loaded) => {
       parentContext.pianoControl = loaded;
-      parentContext.currentFrame = 0;
       parentContext.controlFrameNumber = 0;
       parentContext.simulation.resetData();
       parentContext.simulation.forward();
-      console.log("LOADED!");
     });
   });
 
@@ -141,6 +139,7 @@ export function setupGUI(parentContext) {
   //  When paused, a "pause" text in white is displayed in the top left corner.
   //  Can also be triggered by pressing the spacebar.
   const pauseSimulation = simulationFolder.add(parentContext.params, 'paused').name('Pause Simulation');
+  const pauseSong = simulationFolder.add(parentContext.params, 'songPaused').name('Pause Song');
   pauseSimulation.onChange((value) => {
     if (value) {
       const pausedText = document.createElement('div');
@@ -171,11 +170,11 @@ export function setupGUI(parentContext) {
   //  Name: "Reload".
   //  When pressed, calls the reload function.
   //  Can also be triggered by pressing ctrl + L.
-  simulationFolder.add({reload: () => { reload(); }}, 'reload').name('Reload');
-  document.addEventListener('keydown', (event) => {
-    if (event.ctrlKey && event.code === 'KeyL') { reload();  event.preventDefault(); }});
-  actionInnerHTML += 'Reload XML<br>';
-  keyInnerHTML += 'Ctrl L<br>';
+  //simulationFolder.add({reload: () => { reload(); }}, 'reload').name('Reload');
+  //document.addEventListener('keydown', (event) => {
+  //  if (event.ctrlKey && event.code === 'KeyL') { reload();  event.preventDefault(); }});
+  //actionInnerHTML += 'Reload XML<br>';
+  //keyInnerHTML += 'Ctrl L<br>';
 
   // Add reset simulation button.
   // Parameters:
@@ -195,24 +194,24 @@ export function setupGUI(parentContext) {
   keyInnerHTML += 'Backspace<br>';
 
   // Add keyframe slider.
-  let nkeys = parentContext.model.nkey();
-  let keyframeGUI = simulationFolder.add(parentContext.params, "keyframeNumber", 0, nkeys - 1, 1).name('Load Keyframe').listen();
-  keyframeGUI.onChange((value) => {
-    if (value < parentContext.model.nkey()) {
-      parentContext.simulation.qpos().set(parentContext.model.key_qpos().slice(
-        value * parentContext.model.nq(), (value + 1) * parentContext.model.nq())); }});
-  parentContext.updateGUICallbacks.push((model, simulation, params) => {
-    let nkeys = parentContext.model.nkey();
-    console.log("new model loaded. has " + nkeys + " keyframes.");
-    if (nkeys > 0) {
-      keyframeGUI.max(nkeys - 1);
-      keyframeGUI.domElement.style.opacity = 1.0;
-    } else {
-      // Disable keyframe slider if no keyframes are available.
-      keyframeGUI.max(0);
-      keyframeGUI.domElement.style.opacity = 0.5;
-    }
-  });
+  //let nkeys = parentContext.model.nkey();
+  //let keyframeGUI = simulationFolder.add(parentContext.params, "keyframeNumber", 0, nkeys - 1, 1).name('Load Keyframe').listen();
+  //keyframeGUI.onChange((value) => {
+  //  if (value < parentContext.model.nkey()) {
+  //    parentContext.simulation.qpos().set(parentContext.model.key_qpos().slice(
+  //      value * parentContext.model.nq(), (value + 1) * parentContext.model.nq())); }});
+  //parentContext.updateGUICallbacks.push((model, simulation, params) => {
+  //  let nkeys = parentContext.model.nkey();
+  //  console.log("new model loaded. has " + nkeys + " keyframes.");
+  //  if (nkeys > 0) {
+  //    keyframeGUI.max(nkeys - 1);
+  //    keyframeGUI.domElement.style.opacity = 1.0;
+  //  } else {
+  //    // Disable keyframe slider if no keyframes are available.
+  //    keyframeGUI.max(0);
+  //    keyframeGUI.domElement.style.opacity = 0.5;
+  //  }
+  //});
 
   // Add sliders for ctrlnoiserate and ctrlnoisestd; min = 0, max = 2, step = 0.01.
   simulationFolder.add(parentContext.params, 'ctrlnoiserate', 0.0, 2.0, 0.01).name('Noise rate' );

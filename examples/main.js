@@ -150,7 +150,7 @@ export class RoboPianistDemo {
     document.addEventListener('pointerdown', () => { if (Tone.context.state !== "running") { Tone.context.resume(); } });
 
     // Define Random State Variables
-    this.params = { song: "twinkle_twinkle_actions.npy", paused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
+    this.params = { song: "twinkle_twinkle_actions.npy", paused: false, songPaused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
     this.mujoco_time = 0.0;
     this.bodies  = {}, this.lights = {};
     this.tmpVec  = new THREE.Vector3();
@@ -215,7 +215,7 @@ export class RoboPianistDemo {
     this.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+this.params.song, (loaded) => {
       this.pianoControl = loaded;
       console.log(this.pianoControl);
-      this.currentFrame = 0;
+      this.controlFrameNumber = 0;
     });
   }
 
@@ -294,7 +294,7 @@ export class RoboPianistDemo {
       while (this.mujoco_time < timeMS) {
 
         // Jitter the control state with gaussian random noise
-        if (this.pianoControl) {
+        if (this.pianoControl && !this.params.songPaused) {
           let currentCtrl = this.simulation.ctrl();
           for (let i = 0; i < currentCtrl.length; i++) {
             // Play one control frame every 10 timesteps
@@ -333,7 +333,9 @@ export class RoboPianistDemo {
           }
           let bodyID = dragged.bodyID;
           this.dragStateManager.update(); // Update the world-space force origin
-          let force = toMujocoPos(this.dragStateManager.currentWorld.clone().sub(this.dragStateManager.worldHit).multiplyScalar(250)); //this.model.body_mass()[bodyID] * 
+          let force = toMujocoPos(this.dragStateManager.currentWorld.clone()
+            .sub(this.dragStateManager.worldHit)
+            .multiplyScalar(Math.max(1, this.model.body_mass()[bodyID]) * 250)); //
           let point = toMujocoPos(this.dragStateManager.worldHit.clone());
           this.simulation.applyForce(force.x, force.y, force.z, 0, 0, 0, point.x, point.y, point.z, bodyID);
 
@@ -341,7 +343,8 @@ export class RoboPianistDemo {
         }
 
         this.simulation.step();
-        if (this.params.scene == "piano_with_shadow_hands/scene.xml") { this.processPianoState(); }
+
+        this.processPianoState(); 
 
         this.mujoco_time += timestep * 1000.0;
       }
