@@ -24,71 +24,6 @@
         <site size="0.044999999999999998 0.0050000000000000001 0.0089999999999999993"/>
       </default>
     </default>
-    <default class="lh_shadow_hand/">
-      <default class="lh_shadow_hand/left_hand">
-        <mesh scale="0.001 0.001 0.001"/>
-        <joint axis="1 0 0" armature="0.00020000000000000001" damping="0.050000000000000003" frictionloss="0.01"/>
-        <position forcerange="-1 1"/>
-        <default class="lh_shadow_hand/wrist">
-          <joint damping="0.5"/>
-          <default class="lh_shadow_hand/wrist_y">
-            <joint axis="0 -1 0" range="-0.52359900000000004 0.17453299999999999"/>
-            <position ctrlrange="-0.52359900000000004 0.17453299999999999" forcerange="-10 10" kp="10"/>
-          </default>
-          <default class="lh_shadow_hand/wrist_x">
-            <joint range="-0.69813199999999997 0.48869200000000002"/>
-            <position ctrlrange="-0.69813199999999997 0.48869200000000002" forcerange="-5 5" kp="8"/>
-          </default>
-        </default>
-        <default class="lh_shadow_hand/thumb">
-          <default class="lh_shadow_hand/thbase">
-            <joint axis="0 0 1" range="-1.0471999999999999 1.0471999999999999"/>
-            <position ctrlrange="-1.0471999999999999 1.0471999999999999" forcerange="-3 3" kp="0.40000000000000002"/>
-          </default>
-          <default class="lh_shadow_hand/thproximal">
-            <joint axis="-1 0 0" range="0 1.22173"/>
-            <position ctrlrange="0 1.22173" forcerange="-2 2"/>
-          </default>
-          <default class="lh_shadow_hand/thhub">
-            <joint axis="-1 0 0" range="-0.20943999999999999 0.20943999999999999"/>
-            <position ctrlrange="-0.20943999999999999 0.20943999999999999" kp="0.5"/>
-          </default>
-          <default class="lh_shadow_hand/thmiddle">
-            <joint axis="0 -1 0" range="-0.69813199999999997 0.69813199999999997"/>
-            <position ctrlrange="-0.69813199999999997 0.69813199999999997" kp="1.5"/>
-          </default>
-          <default class="lh_shadow_hand/thdistal">
-            <joint range="-0.261799 1.5708"/>
-            <position ctrlrange="-0.261799 1.5708"/>
-          </default>
-        </default>
-        <default class="lh_shadow_hand/metacarpal">
-          <joint axis="0.57357599999999997 0 0.81915199999999999" range="0 0.78539800000000004"/>
-          <position ctrlrange="0 0.78539800000000004"/>
-        </default>
-        <default class="lh_shadow_hand/knuckle">
-          <joint axis="0 -1 0" range="-0.34906599999999999 0.34906599999999999"/>
-          <position ctrlrange="-0.34906599999999999 0.34906599999999999"/>
-        </default>
-        <default class="lh_shadow_hand/proximal">
-          <joint range="-0.261799 1.5708"/>
-          <position ctrlrange="-0.261799 1.5708"/>
-        </default>
-        <default class="lh_shadow_hand/middle_distal">
-          <joint range="0 1.5708"/>
-          <position ctrlrange="0 3.1415000000000002" kp="0.5"/>
-        </default>
-        <default class="lh_shadow_hand/plastic">
-          <geom solref="0.0050000000000000001 1" solimp="0.5 0.98999999999999999 0.0001"/>
-          <default class="lh_shadow_hand/plastic_visual">
-            <geom type="mesh" contype="0" conaffinity="0" group="2" material="lh_shadow_hand/black"/>
-          </default>
-          <default class="lh_shadow_hand/plastic_collision">
-            <geom group="3"/>
-          </default>
-        </default>
-      </default>
-    </default>
     <default class="rh_shadow_hand/">
       <default class="rh_shadow_hand/right_hand">
         <mesh scale="0.001 0.001 0.001"/>
@@ -154,27 +89,76 @@
         </default>
       </default>
     </default>
+    <default class="lh_shadow_hand/">
+      <default class="lh_shadow_hand/left_hand">
+        <mesh scale="0.001 0.001 0.001"/>
+        <joint axis="1 0 0" armature="0.00020000000000000001" damping="0.050000000000000003" frictionloss="0.01"/>
+        <position forcerange="-1 1"/>
+        <default class="lh_shadow_hand/wrist">
+          <joint damping="0.5"/>
+          <default class="lh_shadow_hand/wrist_y">
+            <joint axis="0 -1 0" range="-0.52359900000000004 0.17453299999999999"/>
+            <position ctrlrange="-0.52359900000000004 0.17453299999999999" forcerange="-10 10" kp="10"/>
+          </default>
+          <default class="lh_shadow_hand/wrist_x">
+            <joint range="-0.69813199999999997 0.48869200000000002"/>
+            <position ctrlrange="-0.69813199999999997 0.48869200000000002" forcerange="-5 5" kp="8"/>
+          </default>
+        </default>
+        <default class="lh_shadow_hand/thumb">
+          <default class="lh_shadow_hand/thbase">
+            <joint axis="0 0 1" range="-1.0471999999999999 1.0471999999999999"/>
+            <position ctrlrange="-1.0471999999999999 1.0471999999999999" forcerange="-3 3" kp="0.40000000000000002"/>
+          </default>
+          <default class="lh_shadow_hand/thproximal">
+            <joint axis="-1 0 0" range="0 1.22173"/>
+            <position ctrlrange="0 1.22173" forcerange="-2 2"/>
+          </default>
+          <default class="lh_shadow_hand/thhub">
+            <joint axis="-1 0 0" range="-0.20943999999999999 0.20943999999999999"/>
+            <position ctrlrange="-0.20943999999999999 0.20943999999999999" kp="0.5"/>
+          </default>
+          <default class="lh_shadow_hand/thmiddle">
+            <joint axis="0 -1 0" range="-0.69813199999999997 0.69813199999999997"/>
+            <position ctrlrange="-0.69813199999999997 0.69813199999999997" kp="1.5"/>
+          </default>
+          <default class="lh_shadow_hand/thdistal">
+            <joint range="-0.261799 1.5708"/>
+            <position ctrlrange="-0.261799 1.5708"/>
+          </default>
+        </default>
+        <default class="lh_shadow_hand/metacarpal">
+          <joint axis="0.57357599999999997 0 0.81915199999999999" range="0 0.78539800000000004"/>
+          <position ctrlrange="0 0.78539800000000004"/>
+        </default>
+        <default class="lh_shadow_hand/knuckle">
+          <joint axis="0 -1 0" range="-0.34906599999999999 0.34906599999999999"/>
+          <position ctrlrange="-0.34906599999999999 0.34906599999999999"/>
+        </default>
+        <default class="lh_shadow_hand/proximal">
+          <joint range="-0.261799 1.5708"/>
+          <position ctrlrange="-0.261799 1.5708"/>
+        </default>
+        <default class="lh_shadow_hand/middle_distal">
+          <joint range="0 1.5708"/>
+          <position ctrlrange="0 3.1415000000000002" kp="0.5"/>
+        </default>
+        <default class="lh_shadow_hand/plastic">
+          <geom solref="0.0050000000000000001 1" solimp="0.5 0.98999999999999999 0.0001"/>
+          <default class="lh_shadow_hand/plastic_visual">
+            <geom type="mesh" contype="0" conaffinity="0" group="2" material="lh_shadow_hand/black"/>
+          </default>
+          <default class="lh_shadow_hand/plastic_collision">
+            <geom group="3"/>
+          </default>
+        </default>
+      </default>
+    </default>
   </default>
   <asset>
     <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.20000000000000001 0.20000000000000001 0.20000000000000001" rgb2="0 0 0" mark="random" markrgb="1 1 1" width="800" height="800"/>
     <material name="piano/white" class="piano/" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
     <material name="piano/black" class="piano/" rgba="0.10000000000000001 0.10000000000000001 0.10000000000000001 1"/>
-    <material name="lh_shadow_hand/black" class="lh_shadow_hand/" specular="0.5" shininess="0.25" rgba="0.16355 0.16355 0.16355 1"/>
-    <material name="lh_shadow_hand/gray" class="lh_shadow_hand/" specular="0" shininess="0.25" rgba="0.80847999999999998 0.80847999999999998 0.80847999999999998 1"/>
-    <material name="lh_shadow_hand/metallic" class="lh_shadow_hand/" specular="0" shininess="0.25" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
-    <mesh name="lh_shadow_hand/forearm_0" class="lh_shadow_hand/left_hand" file="forearm_0-20abf0e17ef9afc17a625f75fc0ad21f31b2ff9a.obj"/>
-    <mesh name="lh_shadow_hand/forearm_1" class="lh_shadow_hand/left_hand" file="forearm_1-f5b8ac92a6e1b0a6b27c50dac2004867e6c0fb5b.obj"/>
-    <mesh name="lh_shadow_hand/forearm_collision" class="lh_shadow_hand/left_hand" file="forearm_collision-3ef43cdb2273599be12fc3270639b8782c869cb4.obj"/>
-    <mesh name="lh_shadow_hand/wrist" class="lh_shadow_hand/left_hand" file="wrist-87545134a753f219a1f55310cc200489b3a03c47.obj" scale="-0.001 0.001 0.001"/>
-    <mesh name="lh_shadow_hand/palm" class="lh_shadow_hand/left_hand" file="palm-20de86ceb3b063e7ca1bf25fa6ddd07c068d6a70.obj" scale="-0.001 0.001 0.001"/>
-    <mesh name="lh_shadow_hand/f_knuckle" class="lh_shadow_hand/left_hand" file="f_knuckle-4e74747ced8908917157e00df691de5cfc71808c.obj"/>
-    <mesh name="lh_shadow_hand/f_proximal" class="lh_shadow_hand/left_hand" file="f_proximal-2b944834ac12ce9bb152073bce3db339405bc76d.obj"/>
-    <mesh name="lh_shadow_hand/f_middle" class="lh_shadow_hand/left_hand" file="f_middle-c817011a5fccb8dac0f3201f10aa30ffa74db8b6.obj"/>
-    <mesh name="lh_shadow_hand/f_distal_pst" class="lh_shadow_hand/left_hand" file="f_distal_pst-927e7e0da0ee76e69c0444b22bade45ff20ab5ee.obj"/>
-    <mesh name="lh_shadow_hand/lf_metacarpal" class="lh_shadow_hand/left_hand" file="lf_metacarpal-43a8cbd60c754686e733e10c0c28ff082b46a917.obj" scale="-0.001 0.001 0.001"/>
-    <mesh name="lh_shadow_hand/th_proximal" class="lh_shadow_hand/left_hand" file="th_proximal-836fc483b89bf08806ab50636ab1fe738a54406e.obj"/>
-    <mesh name="lh_shadow_hand/th_middle" class="lh_shadow_hand/left_hand" file="th_middle-c6937ecc6bf6b01a854aaffb71f3beeda05f8ac3.obj"/>
-    <mesh name="lh_shadow_hand/th_distal_pst" class="lh_shadow_hand/left_hand" file="th_distal_pst-c003d5be2d6a841babda3d88c51010617a2ba4bb.obj"/>
     <material name="rh_shadow_hand/black" class="rh_shadow_hand/" specular="0.5" shininess="0.25" rgba="0.16355 0.16355 0.16355 1"/>
     <material name="rh_shadow_hand/gray" class="rh_shadow_hand/" specular="0" shininess="0.25" rgba="0.80847999999999998 0.80847999999999998 0.80847999999999998 1"/>
     <material name="rh_shadow_hand/metallic" class="rh_shadow_hand/" specular="0" shininess="0.25" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
@@ -191,6 +175,22 @@
     <mesh name="rh_shadow_hand/th_proximal" class="rh_shadow_hand/right_hand" file="th_proximal-836fc483b89bf08806ab50636ab1fe738a54406e.obj"/>
     <mesh name="rh_shadow_hand/th_middle" class="rh_shadow_hand/right_hand" file="th_middle-c6937ecc6bf6b01a854aaffb71f3beeda05f8ac3.obj"/>
     <mesh name="rh_shadow_hand/th_distal_pst" class="rh_shadow_hand/right_hand" file="th_distal_pst-c003d5be2d6a841babda3d88c51010617a2ba4bb.obj"/>
+    <material name="lh_shadow_hand/black" class="lh_shadow_hand/" specular="0.5" shininess="0.25" rgba="0.16355 0.16355 0.16355 1"/>
+    <material name="lh_shadow_hand/gray" class="lh_shadow_hand/" specular="0" shininess="0.25" rgba="0.80847999999999998 0.80847999999999998 0.80847999999999998 1"/>
+    <material name="lh_shadow_hand/metallic" class="lh_shadow_hand/" specular="0" shininess="0.25" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
+    <mesh name="lh_shadow_hand/forearm_0" class="lh_shadow_hand/left_hand" file="forearm_0-20abf0e17ef9afc17a625f75fc0ad21f31b2ff9a.obj"/>
+    <mesh name="lh_shadow_hand/forearm_1" class="lh_shadow_hand/left_hand" file="forearm_1-f5b8ac92a6e1b0a6b27c50dac2004867e6c0fb5b.obj"/>
+    <mesh name="lh_shadow_hand/forearm_collision" class="lh_shadow_hand/left_hand" file="forearm_collision-3ef43cdb2273599be12fc3270639b8782c869cb4.obj"/>
+    <mesh name="lh_shadow_hand/wrist" class="lh_shadow_hand/left_hand" file="wrist-87545134a753f219a1f55310cc200489b3a03c47.obj" scale="-0.001 0.001 0.001"/>
+    <mesh name="lh_shadow_hand/palm" class="lh_shadow_hand/left_hand" file="palm-20de86ceb3b063e7ca1bf25fa6ddd07c068d6a70.obj" scale="-0.001 0.001 0.001"/>
+    <mesh name="lh_shadow_hand/f_knuckle" class="lh_shadow_hand/left_hand" file="f_knuckle-4e74747ced8908917157e00df691de5cfc71808c.obj"/>
+    <mesh name="lh_shadow_hand/f_proximal" class="lh_shadow_hand/left_hand" file="f_proximal-2b944834ac12ce9bb152073bce3db339405bc76d.obj"/>
+    <mesh name="lh_shadow_hand/f_middle" class="lh_shadow_hand/left_hand" file="f_middle-c817011a5fccb8dac0f3201f10aa30ffa74db8b6.obj"/>
+    <mesh name="lh_shadow_hand/f_distal_pst" class="lh_shadow_hand/left_hand" file="f_distal_pst-927e7e0da0ee76e69c0444b22bade45ff20ab5ee.obj"/>
+    <mesh name="lh_shadow_hand/lf_metacarpal" class="lh_shadow_hand/left_hand" file="lf_metacarpal-43a8cbd60c754686e733e10c0c28ff082b46a917.obj" scale="-0.001 0.001 0.001"/>
+    <mesh name="lh_shadow_hand/th_proximal" class="lh_shadow_hand/left_hand" file="th_proximal-836fc483b89bf08806ab50636ab1fe738a54406e.obj"/>
+    <mesh name="lh_shadow_hand/th_middle" class="lh_shadow_hand/left_hand" file="th_middle-c6937ecc6bf6b01a854aaffb71f3beeda05f8ac3.obj"/>
+    <mesh name="lh_shadow_hand/th_distal_pst" class="lh_shadow_hand/left_hand" file="th_distal_pst-c003d5be2d6a841babda3d88c51010617a2ba4bb.obj"/>
   </asset>
   <worldbody>
     <light name="//unnamed_light_0" class="/" pos="0 0 1"/>
@@ -647,202 +647,6 @@
       <camera name="piano/egocentric" class="piano/" pos="0.41699999999999998 -0.039 0.71699999999999997" xyaxes="-0.002 1 0 -0.86699999999999999 -0.002 0.498"/>
       <camera name="piano/topdown" class="piano/" fovy="33.9496196739872" pos="0 0 1" quat="1 0 0 1"/>
     </body>
-    <body name="lh_shadow_hand/">
-      <body name="lh_shadow_hand/lh_forearm" childclass="lh_shadow_hand/left_hand" pos="0.40000000000000002 -0.14999999999999999 0.13" quat="-1 -1 1 1" gravcomp="1">
-        <inertial pos="0 0 0.089999999999999997" mass="3" diaginertia="0.0138 0.0138 0.0074400000000000004"/>
-        <geom name="lh_shadow_hand//unnamed_geom_0" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/gray" mesh="lh_shadow_hand/forearm_0"/>
-        <geom name="lh_shadow_hand//unnamed_geom_1" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/forearm_1"/>
-        <geom name="lh_shadow_hand//unnamed_geom_2" class="lh_shadow_hand/plastic_collision" type="mesh" mesh="lh_shadow_hand/forearm_collision"/>
-        <geom name="lh_shadow_hand//unnamed_geom_3" class="lh_shadow_hand/plastic_collision" type="box" size="0.035000000000000003 0.035000000000000003 0.035000000000000003" pos="0 -0.01 0.18099999999999999" quat="0.92490899999999998 0 0.38018800000000003 0"/>
-        <body name="lh_shadow_hand/lh_wrist" pos="0 -0.01 0.21301" gravcomp="1">
-          <inertial pos="0 0 0.029000000000000001" quat="0.5 0.5 0.5 0.5" mass="0.10000000000000001" diaginertia="6.3999999999999997e-05 4.3800000000000001e-05 3.4999999999999997e-05"/>
-          <joint name="lh_shadow_hand/lh_WRJ2" class="lh_shadow_hand/wrist_y"/>
-          <geom name="lh_shadow_hand//unnamed_geom_4" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" mesh="lh_shadow_hand/wrist"/>
-          <geom name="lh_shadow_hand//unnamed_geom_5" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0135 0.014999999999999999" quat="0.499998 0.5 0.5 -0.50000199999999995"/>
-          <geom name="lh_shadow_hand//unnamed_geom_6" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.010999999999999999 0.0050000000000000001" pos="0.025999999999999999 0 0.034000000000000002" quat="1 0 1 0"/>
-          <geom name="lh_shadow_hand//unnamed_geom_7" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.010999999999999999 0.0050000000000000001" pos="-0.031 0 0.034000000000000002" quat="1 0 1 0"/>
-          <geom name="lh_shadow_hand//unnamed_geom_8" class="lh_shadow_hand/plastic_collision" type="box" size="0.0135 0.0089999999999999993 0.0050000000000000001" pos="0.021000000000000001 0 0.010999999999999999" quat="-0.92387900000000001 0 0.38268400000000002 0"/>
-          <geom name="lh_shadow_hand//unnamed_geom_9" class="lh_shadow_hand/plastic_collision" type="box" size="0.0135 0.0089999999999999993 0.0050000000000000001" pos="-0.025999999999999999 0 0.01" quat="-0.92387900000000001 0 -0.38268400000000002 0"/>
-          <body name="lh_shadow_hand/lh_palm" pos="0 0 0.034000000000000002" gravcomp="1">
-            <inertial pos="0 0 0.035000000000000003" quat="1 0 0 1" mass="0.29999999999999999" diaginertia="0.0005287 0.00035809999999999998 0.00019100000000000001"/>
-            <joint name="lh_shadow_hand/lh_WRJ1" class="lh_shadow_hand/wrist_x"/>
-            <geom name="lh_shadow_hand//unnamed_geom_10" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/palm"/>
-            <geom name="lh_shadow_hand//unnamed_geom_11" class="lh_shadow_hand/plastic_collision" type="box" size="0.031 0.0035000000000000001 0.049000000000000002" pos="-0.010999999999999999 0.0085000000000000006 0.037999999999999999"/>
-            <geom name="lh_shadow_hand//unnamed_geom_12" class="lh_shadow_hand/plastic_collision" type="box" size="0.017999999999999999 0.0085000000000000006 0.049000000000000002" pos="0.002 -0.0035000000000000001 0.037999999999999999"/>
-            <geom name="lh_shadow_hand//unnamed_geom_13" class="lh_shadow_hand/plastic_collision" type="box" size="0.012999999999999999 0.0085000000000000006 0.0050000000000000001" pos="-0.029000000000000001 -0.0035000000000000001 0.082000000000000003"/>
-            <geom name="lh_shadow_hand//unnamed_geom_14" class="lh_shadow_hand/plastic_collision" type="box" size="0.012999999999999999 0.0070000000000000001 0.0089999999999999993" pos="-0.026499999999999999 -0.001 0.070000000000000007" quat="0.98724100000000004 0.099054500000000004 0.0124467 -0.124052"/>
-            <geom name="lh_shadow_hand//unnamed_geom_15" class="lh_shadow_hand/plastic_collision" type="box" size="0.010500000000000001 0.0135 0.0112" pos="-0.0315 -0.0085000000000000006 0.001"/>
-            <geom name="lh_shadow_hand//unnamed_geom_16" class="lh_shadow_hand/plastic_collision" type="box" size="0.010999999999999999 0.0025000000000000001 0.014999999999999999" pos="-0.012500000000000001 -0.014999999999999999 0.0040000000000000001" quat="-0.97133800000000003 0 0 -0.237703"/>
-            <geom name="lh_shadow_hand//unnamed_geom_17" class="lh_shadow_hand/plastic_collision" type="box" size="0.0089999999999999993 0.012 0.002" pos="-0.010999999999999999 0 0.088999999999999996"/>
-            <geom name="lh_shadow_hand//unnamed_geom_18" class="lh_shadow_hand/plastic_collision" type="box" size="0.01 0.012 0.02" pos="0.029999999999999999 0 0.0089999999999999993"/>
-            <body name="lh_shadow_hand/lh_ffknuckle" pos="-0.033000000000000002 0 0.095000000000000001" gravcomp="1">
-              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
-              <joint name="lh_shadow_hand/lh_FFJ4" class="lh_shadow_hand/knuckle" axis="0 1 0"/>
-              <geom name="lh_shadow_hand//unnamed_geom_19" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
-              <geom name="lh_shadow_hand//unnamed_geom_20" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
-              <body name="lh_shadow_hand/lh_ffproximal" gravcomp="1">
-                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
-                <joint name="lh_shadow_hand/lh_FFJ3" class="lh_shadow_hand/proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_21" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_22" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
-                <body name="lh_shadow_hand/lh_ffmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
-                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
-                  <joint name="lh_shadow_hand/lh_FFJ2" class="lh_shadow_hand/middle_distal"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_23" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_24" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
-                  <body name="lh_shadow_hand/lh_ffdistal" pos="0 0 0.025000000000000001" gravcomp="1">
-                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
-                    <joint name="lh_shadow_hand/lh_FFJ1" class="lh_shadow_hand/middle_distal"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_25" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.20000000000000001 0.20000000000000001 1" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_26" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <site name="lh_shadow_hand/ffdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.20000000000000001 0.20000000000000001 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
-                    <site name="lh_shadow_hand/lh_FFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                  </body>
-                  <site name="lh_shadow_hand/lh_FFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                </body>
-                <site name="lh_shadow_hand/lh_FFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-              </body>
-              <site name="lh_shadow_hand/lh_FFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-            </body>
-            <body name="lh_shadow_hand/lh_mfknuckle" pos="-0.010999999999999999 0 0.099000000000000005" gravcomp="1">
-              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
-              <joint name="lh_shadow_hand/lh_MFJ4" class="lh_shadow_hand/knuckle" axis="0 1 0"/>
-              <geom name="lh_shadow_hand//unnamed_geom_27" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
-              <geom name="lh_shadow_hand//unnamed_geom_28" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
-              <body name="lh_shadow_hand/lh_mfproximal" gravcomp="1">
-                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
-                <joint name="lh_shadow_hand/lh_MFJ3" class="lh_shadow_hand/proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_29" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_30" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
-                <body name="lh_shadow_hand/lh_mfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
-                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
-                  <joint name="lh_shadow_hand/lh_MFJ2" class="lh_shadow_hand/middle_distal"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_31" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_32" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
-                  <body name="lh_shadow_hand/lh_mfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
-                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
-                    <joint name="lh_shadow_hand/lh_MFJ1" class="lh_shadow_hand/middle_distal"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_33" class="lh_shadow_hand/plastic_visual" rgba="0.20000000000000001 0.80000000000000004 0.80000000000000004 1" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_34" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <site name="lh_shadow_hand/mfdistal_site" type="sphere" group="4" rgba="0.20000000000000001 0.80000000000000004 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
-                    <site name="lh_shadow_hand/lh_MFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                  </body>
-                  <site name="lh_shadow_hand/lh_MFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                </body>
-                <site name="lh_shadow_hand/lh_MFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-              </body>
-              <site name="lh_shadow_hand/lh_MFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-            </body>
-            <body name="lh_shadow_hand/lh_rfknuckle" pos="0.010999999999999999 0 0.095000000000000001" gravcomp="1">
-              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
-              <joint name="lh_shadow_hand/lh_RFJ4" class="lh_shadow_hand/knuckle"/>
-              <geom name="lh_shadow_hand//unnamed_geom_35" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
-              <geom name="lh_shadow_hand//unnamed_geom_36" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
-              <body name="lh_shadow_hand/lh_rfproximal" gravcomp="1">
-                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
-                <joint name="lh_shadow_hand/lh_RFJ3" class="lh_shadow_hand/proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_37" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_38" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
-                <body name="lh_shadow_hand/lh_rfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
-                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
-                  <joint name="lh_shadow_hand/lh_RFJ2" class="lh_shadow_hand/middle_distal"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_39" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_40" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
-                  <body name="lh_shadow_hand/lh_rfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
-                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
-                    <joint name="lh_shadow_hand/lh_RFJ1" class="lh_shadow_hand/middle_distal"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_41" class="lh_shadow_hand/plastic_visual" rgba="0.20000000000000001 0.20000000000000001 0.80000000000000004 1" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_42" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
-                    <site name="lh_shadow_hand/rfdistal_site" type="sphere" group="4" rgba="0.20000000000000001 0.20000000000000001 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
-                    <site name="lh_shadow_hand/lh_RFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                  </body>
-                  <site name="lh_shadow_hand/lh_RFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                </body>
-                <site name="lh_shadow_hand/lh_RFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-              </body>
-              <site name="lh_shadow_hand/lh_RFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-            </body>
-            <body name="lh_shadow_hand/lh_lfmetacarpal" pos="0.033000000000000002 0 0.020709999999999999" gravcomp="1">
-              <inertial pos="0 0 0.040000000000000001" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.6379999999999999e-05 1.45e-05 4.2719999999999999e-06"/>
-              <joint name="lh_shadow_hand/lh_LFJ5" class="lh_shadow_hand/metacarpal" axis="0.57357599999999997 0 -0.81915199999999999"/>
-              <geom name="lh_shadow_hand//unnamed_geom_43" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/lf_metacarpal"/>
-              <geom name="lh_shadow_hand//unnamed_geom_44" class="lh_shadow_hand/plastic_collision" type="box" size="0.010999999999999999 0.012 0.025000000000000001" pos="-0.002 0 0.033000000000000002"/>
-              <body name="lh_shadow_hand/lh_lfknuckle" pos="0 0 0.065790000000000001" gravcomp="1">
-                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
-                <joint name="lh_shadow_hand/lh_LFJ4" class="lh_shadow_hand/knuckle"/>
-                <geom name="lh_shadow_hand//unnamed_geom_45" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
-                <geom name="lh_shadow_hand//unnamed_geom_46" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
-                <body name="lh_shadow_hand/lh_lfproximal" gravcomp="1">
-                  <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
-                  <joint name="lh_shadow_hand/lh_LFJ3" class="lh_shadow_hand/proximal"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_47" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_48" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
-                  <body name="lh_shadow_hand/lh_lfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
-                    <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
-                    <joint name="lh_shadow_hand/lh_LFJ2" class="lh_shadow_hand/middle_distal"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_49" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_50" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
-                    <body name="lh_shadow_hand/lh_lfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
-                      <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
-                      <joint name="lh_shadow_hand/lh_LFJ1" class="lh_shadow_hand/middle_distal"/>
-                      <geom name="lh_shadow_hand//unnamed_geom_51" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.80000000000000004 0.20000000000000001 1" mesh="lh_shadow_hand/f_distal_pst"/>
-                      <geom name="lh_shadow_hand//unnamed_geom_52" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
-                      <site name="lh_shadow_hand/lfdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.80000000000000004 0.20000000000000001 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
-                      <site name="lh_shadow_hand/lh_LFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                    </body>
-                    <site name="lh_shadow_hand/lh_LFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                  </body>
-                  <site name="lh_shadow_hand/lh_LFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                </body>
-                <site name="lh_shadow_hand/lh_LFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-              </body>
-              <site name="lh_shadow_hand/lh_LFJ5_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-            </body>
-            <body name="lh_shadow_hand/lh_thbase" pos="-0.034000000000000002 -0.0085800000000000008 0.029000000000000001" quat="0 -0.382683 0 0.92388000000000003" gravcomp="1">
-              <inertial pos="0 0 0" mass="0.01" diaginertia="1.6e-07 1.6e-07 1.6e-07"/>
-              <joint name="lh_shadow_hand/lh_THJ5" class="lh_shadow_hand/thbase"/>
-              <geom name="lh_shadow_hand//unnamed_geom_53" class="lh_shadow_hand/plastic_collision" size="0.012999999999999999"/>
-              <body name="lh_shadow_hand/lh_thproximal" gravcomp="1">
-                <inertial pos="0 0 0.019" mass="0.040000000000000001" diaginertia="1.36e-05 1.36e-05 3.1300000000000001e-06"/>
-                <joint name="lh_shadow_hand/lh_THJ4" class="lh_shadow_hand/thproximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_54" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/th_proximal"/>
-                <geom name="lh_shadow_hand//unnamed_geom_55" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.010500000000000001 0.0089999999999999993" pos="0 0 0.02"/>
-                <body name="lh_shadow_hand/lh_thhub" pos="0 0 0.037999999999999999" gravcomp="1">
-                  <inertial pos="0 0 0" mass="0.0050000000000000001" diaginertia="9.9999999999999995e-07 9.9999999999999995e-07 2.9999999999999999e-07"/>
-                  <joint name="lh_shadow_hand/lh_THJ3" class="lh_shadow_hand/thhub"/>
-                  <geom name="lh_shadow_hand//unnamed_geom_56" class="lh_shadow_hand/plastic_collision" size="0.010999999999999999"/>
-                  <body name="lh_shadow_hand/lh_thmiddle" gravcomp="1">
-                    <inertial pos="0 0 0.016" mass="0.02" diaginertia="5.1000000000000003e-06 5.1000000000000003e-06 1.2100000000000001e-06"/>
-                    <joint name="lh_shadow_hand/lh_THJ2" class="lh_shadow_hand/thmiddle" range="0 0.69813199999999997"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_57" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/th_middle"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_58" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.0089999999999999993" pos="0 0 0.012"/>
-                    <geom name="lh_shadow_hand//unnamed_geom_59" class="lh_shadow_hand/plastic_collision" size="0.01" pos="0 0 0.029999999999999999"/>
-                    <body name="lh_shadow_hand/lh_thdistal" pos="0 0 0.032000000000000001" quat="1 0 0 -1" gravcomp="1">
-                      <inertial pos="0 0 0.0145588" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.37794e-06 2.2779400000000001e-06 9.9999999999999995e-07"/>
-                      <joint name="lh_shadow_hand/lh_THJ1" class="lh_shadow_hand/thdistal"/>
-                      <geom name="lh_shadow_hand//unnamed_geom_60" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.20000000000000001 0.80000000000000004 1" mesh="lh_shadow_hand/th_distal_pst"/>
-                      <geom name="lh_shadow_hand//unnamed_geom_61" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/th_distal_pst"/>
-                      <site name="lh_shadow_hand/thdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.20000000000000001 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.0275"/>
-                      <site name="lh_shadow_hand/lh_THJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                    </body>
-                    <site name="lh_shadow_hand/lh_THJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                  </body>
-                  <site name="lh_shadow_hand/lh_THJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-                </body>
-                <site name="lh_shadow_hand/lh_THJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-              </body>
-              <site name="lh_shadow_hand/lh_THJ5_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-            </body>
-            <site name="lh_shadow_hand/lh_WRJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-          </body>
-          <site name="lh_shadow_hand/lh_WRJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-        </body>
-        <joint name="lh_shadow_hand/forearm_tx" type="slide" axis="-1 0 0" range="-0.46049999999999991 0.76049999999999995" damping="67.476218032726166"/>
-        <joint name="lh_shadow_hand/forearm_ty" type="slide" axis="0 0 1" range="0 0.059999999999999998" damping="67.476218032726166"/>
-        <site name="lh_shadow_hand/forearm_tx_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-        <site name="lh_shadow_hand/forearm_ty_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
-      </body>
-    </body>
     <body name="rh_shadow_hand/">
       <body name="rh_shadow_hand/rh_forearm" childclass="rh_shadow_hand/right_hand" pos="0.40000000000000002 0.14999999999999999 0.13" quat="-1 -1 1 1" gravcomp="1">
         <inertial pos="0 0 0.089999999999999997" mass="3" diaginertia="0.0138 0.0138 0.0074400000000000004"/>
@@ -1040,30 +844,210 @@
         <site name="rh_shadow_hand/forearm_ty_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
       </body>
     </body>
+    <body name="lh_shadow_hand/">
+      <body name="lh_shadow_hand/lh_forearm" childclass="lh_shadow_hand/left_hand" pos="0.40000000000000002 -0.14999999999999999 0.13" quat="-1 -1 1 1" gravcomp="1">
+        <inertial pos="0 0 0.089999999999999997" mass="3" diaginertia="0.0138 0.0138 0.0074400000000000004"/>
+        <geom name="lh_shadow_hand//unnamed_geom_0" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/gray" mesh="lh_shadow_hand/forearm_0"/>
+        <geom name="lh_shadow_hand//unnamed_geom_1" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/forearm_1"/>
+        <geom name="lh_shadow_hand//unnamed_geom_2" class="lh_shadow_hand/plastic_collision" type="mesh" mesh="lh_shadow_hand/forearm_collision"/>
+        <geom name="lh_shadow_hand//unnamed_geom_3" class="lh_shadow_hand/plastic_collision" type="box" size="0.035000000000000003 0.035000000000000003 0.035000000000000003" pos="0 -0.01 0.18099999999999999" quat="0.92490899999999998 0 0.38018800000000003 0"/>
+        <body name="lh_shadow_hand/lh_wrist" pos="0 -0.01 0.21301" gravcomp="1">
+          <inertial pos="0 0 0.029000000000000001" quat="0.5 0.5 0.5 0.5" mass="0.10000000000000001" diaginertia="6.3999999999999997e-05 4.3800000000000001e-05 3.4999999999999997e-05"/>
+          <joint name="lh_shadow_hand/lh_WRJ2" class="lh_shadow_hand/wrist_y"/>
+          <geom name="lh_shadow_hand//unnamed_geom_4" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" mesh="lh_shadow_hand/wrist"/>
+          <geom name="lh_shadow_hand//unnamed_geom_5" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0135 0.014999999999999999" quat="0.499998 0.5 0.5 -0.50000199999999995"/>
+          <geom name="lh_shadow_hand//unnamed_geom_6" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.010999999999999999 0.0050000000000000001" pos="0.025999999999999999 0 0.034000000000000002" quat="1 0 1 0"/>
+          <geom name="lh_shadow_hand//unnamed_geom_7" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.010999999999999999 0.0050000000000000001" pos="-0.031 0 0.034000000000000002" quat="1 0 1 0"/>
+          <geom name="lh_shadow_hand//unnamed_geom_8" class="lh_shadow_hand/plastic_collision" type="box" size="0.0135 0.0089999999999999993 0.0050000000000000001" pos="0.021000000000000001 0 0.010999999999999999" quat="-0.92387900000000001 0 0.38268400000000002 0"/>
+          <geom name="lh_shadow_hand//unnamed_geom_9" class="lh_shadow_hand/plastic_collision" type="box" size="0.0135 0.0089999999999999993 0.0050000000000000001" pos="-0.025999999999999999 0 0.01" quat="-0.92387900000000001 0 -0.38268400000000002 0"/>
+          <body name="lh_shadow_hand/lh_palm" pos="0 0 0.034000000000000002" gravcomp="1">
+            <inertial pos="0 0 0.035000000000000003" quat="1 0 0 1" mass="0.29999999999999999" diaginertia="0.0005287 0.00035809999999999998 0.00019100000000000001"/>
+            <joint name="lh_shadow_hand/lh_WRJ1" class="lh_shadow_hand/wrist_x"/>
+            <geom name="lh_shadow_hand//unnamed_geom_10" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/palm"/>
+            <geom name="lh_shadow_hand//unnamed_geom_11" class="lh_shadow_hand/plastic_collision" type="box" size="0.031 0.0035000000000000001 0.049000000000000002" pos="-0.010999999999999999 0.0085000000000000006 0.037999999999999999"/>
+            <geom name="lh_shadow_hand//unnamed_geom_12" class="lh_shadow_hand/plastic_collision" type="box" size="0.017999999999999999 0.0085000000000000006 0.049000000000000002" pos="0.002 -0.0035000000000000001 0.037999999999999999"/>
+            <geom name="lh_shadow_hand//unnamed_geom_13" class="lh_shadow_hand/plastic_collision" type="box" size="0.012999999999999999 0.0085000000000000006 0.0050000000000000001" pos="-0.029000000000000001 -0.0035000000000000001 0.082000000000000003"/>
+            <geom name="lh_shadow_hand//unnamed_geom_14" class="lh_shadow_hand/plastic_collision" type="box" size="0.012999999999999999 0.0070000000000000001 0.0089999999999999993" pos="-0.026499999999999999 -0.001 0.070000000000000007" quat="0.98724100000000004 0.099054500000000004 0.0124467 -0.124052"/>
+            <geom name="lh_shadow_hand//unnamed_geom_15" class="lh_shadow_hand/plastic_collision" type="box" size="0.010500000000000001 0.0135 0.0112" pos="-0.0315 -0.0085000000000000006 0.001"/>
+            <geom name="lh_shadow_hand//unnamed_geom_16" class="lh_shadow_hand/plastic_collision" type="box" size="0.010999999999999999 0.0025000000000000001 0.014999999999999999" pos="-0.012500000000000001 -0.014999999999999999 0.0040000000000000001" quat="-0.97133800000000003 0 0 -0.237703"/>
+            <geom name="lh_shadow_hand//unnamed_geom_17" class="lh_shadow_hand/plastic_collision" type="box" size="0.0089999999999999993 0.012 0.002" pos="-0.010999999999999999 0 0.088999999999999996"/>
+            <geom name="lh_shadow_hand//unnamed_geom_18" class="lh_shadow_hand/plastic_collision" type="box" size="0.01 0.012 0.02" pos="0.029999999999999999 0 0.0089999999999999993"/>
+            <body name="lh_shadow_hand/lh_ffknuckle" pos="-0.033000000000000002 0 0.095000000000000001" gravcomp="1">
+              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
+              <joint name="lh_shadow_hand/lh_FFJ4" class="lh_shadow_hand/knuckle" axis="0 1 0"/>
+              <geom name="lh_shadow_hand//unnamed_geom_19" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
+              <geom name="lh_shadow_hand//unnamed_geom_20" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
+              <body name="lh_shadow_hand/lh_ffproximal" gravcomp="1">
+                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
+                <joint name="lh_shadow_hand/lh_FFJ3" class="lh_shadow_hand/proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_21" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_22" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
+                <body name="lh_shadow_hand/lh_ffmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
+                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
+                  <joint name="lh_shadow_hand/lh_FFJ2" class="lh_shadow_hand/middle_distal"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_23" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_24" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
+                  <body name="lh_shadow_hand/lh_ffdistal" pos="0 0 0.025000000000000001" gravcomp="1">
+                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
+                    <joint name="lh_shadow_hand/lh_FFJ1" class="lh_shadow_hand/middle_distal"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_25" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.20000000000000001 0.20000000000000001 1" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_26" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <site name="lh_shadow_hand/ffdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.20000000000000001 0.20000000000000001 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
+                    <site name="lh_shadow_hand/lh_FFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                  </body>
+                  <site name="lh_shadow_hand/lh_FFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                </body>
+                <site name="lh_shadow_hand/lh_FFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+              </body>
+              <site name="lh_shadow_hand/lh_FFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+            </body>
+            <body name="lh_shadow_hand/lh_mfknuckle" pos="-0.010999999999999999 0 0.099000000000000005" gravcomp="1">
+              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
+              <joint name="lh_shadow_hand/lh_MFJ4" class="lh_shadow_hand/knuckle" axis="0 1 0"/>
+              <geom name="lh_shadow_hand//unnamed_geom_27" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
+              <geom name="lh_shadow_hand//unnamed_geom_28" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
+              <body name="lh_shadow_hand/lh_mfproximal" gravcomp="1">
+                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
+                <joint name="lh_shadow_hand/lh_MFJ3" class="lh_shadow_hand/proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_29" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_30" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
+                <body name="lh_shadow_hand/lh_mfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
+                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
+                  <joint name="lh_shadow_hand/lh_MFJ2" class="lh_shadow_hand/middle_distal"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_31" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_32" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
+                  <body name="lh_shadow_hand/lh_mfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
+                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
+                    <joint name="lh_shadow_hand/lh_MFJ1" class="lh_shadow_hand/middle_distal"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_33" class="lh_shadow_hand/plastic_visual" rgba="0.20000000000000001 0.80000000000000004 0.80000000000000004 1" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_34" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <site name="lh_shadow_hand/mfdistal_site" type="sphere" group="4" rgba="0.20000000000000001 0.80000000000000004 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
+                    <site name="lh_shadow_hand/lh_MFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                  </body>
+                  <site name="lh_shadow_hand/lh_MFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                </body>
+                <site name="lh_shadow_hand/lh_MFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+              </body>
+              <site name="lh_shadow_hand/lh_MFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+            </body>
+            <body name="lh_shadow_hand/lh_rfknuckle" pos="0.010999999999999999 0 0.095000000000000001" gravcomp="1">
+              <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
+              <joint name="lh_shadow_hand/lh_RFJ4" class="lh_shadow_hand/knuckle"/>
+              <geom name="lh_shadow_hand//unnamed_geom_35" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
+              <geom name="lh_shadow_hand//unnamed_geom_36" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
+              <body name="lh_shadow_hand/lh_rfproximal" gravcomp="1">
+                <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
+                <joint name="lh_shadow_hand/lh_RFJ3" class="lh_shadow_hand/proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_37" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_38" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
+                <body name="lh_shadow_hand/lh_rfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
+                  <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
+                  <joint name="lh_shadow_hand/lh_RFJ2" class="lh_shadow_hand/middle_distal"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_39" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_40" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
+                  <body name="lh_shadow_hand/lh_rfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
+                    <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
+                    <joint name="lh_shadow_hand/lh_RFJ1" class="lh_shadow_hand/middle_distal"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_41" class="lh_shadow_hand/plastic_visual" rgba="0.20000000000000001 0.20000000000000001 0.80000000000000004 1" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_42" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
+                    <site name="lh_shadow_hand/rfdistal_site" type="sphere" group="4" rgba="0.20000000000000001 0.20000000000000001 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
+                    <site name="lh_shadow_hand/lh_RFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                  </body>
+                  <site name="lh_shadow_hand/lh_RFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                </body>
+                <site name="lh_shadow_hand/lh_RFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+              </body>
+              <site name="lh_shadow_hand/lh_RFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+            </body>
+            <body name="lh_shadow_hand/lh_lfmetacarpal" pos="0.033000000000000002 0 0.020709999999999999" gravcomp="1">
+              <inertial pos="0 0 0.040000000000000001" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.6379999999999999e-05 1.45e-05 4.2719999999999999e-06"/>
+              <joint name="lh_shadow_hand/lh_LFJ5" class="lh_shadow_hand/metacarpal" axis="0.57357599999999997 0 -0.81915199999999999"/>
+              <geom name="lh_shadow_hand//unnamed_geom_43" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/lf_metacarpal"/>
+              <geom name="lh_shadow_hand//unnamed_geom_44" class="lh_shadow_hand/plastic_collision" type="box" size="0.010999999999999999 0.012 0.025000000000000001" pos="-0.002 0 0.033000000000000002"/>
+              <body name="lh_shadow_hand/lh_lfknuckle" pos="0 0 0.065790000000000001" gravcomp="1">
+                <inertial pos="0 0 0" quat="0.5 0.5 -0.5 0.5" mass="0.0080000000000000002" diaginertia="3.2000000000000001e-07 2.6e-07 2.6e-07"/>
+                <joint name="lh_shadow_hand/lh_LFJ4" class="lh_shadow_hand/knuckle"/>
+                <geom name="lh_shadow_hand//unnamed_geom_45" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/metallic" pos="0 0 0.00050000000000000001" mesh="lh_shadow_hand/f_knuckle"/>
+                <geom name="lh_shadow_hand//unnamed_geom_46" class="lh_shadow_hand/plastic_collision" type="cylinder" size="0.0089999999999999993 0.0089999999999999993" quat="1 0 1 0"/>
+                <body name="lh_shadow_hand/lh_lfproximal" gravcomp="1">
+                  <inertial pos="0 0 0.022499999999999999" quat="1 0 0 1" mass="0.029999999999999999" diaginertia="1.0000000000000001e-05 9.7999999999999993e-06 1.7999999999999999e-06"/>
+                  <joint name="lh_shadow_hand/lh_LFJ3" class="lh_shadow_hand/proximal"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_47" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_proximal"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_48" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.02" pos="0 0 0.025000000000000001"/>
+                  <body name="lh_shadow_hand/lh_lfmiddle" pos="0 0 0.044999999999999998" gravcomp="1">
+                    <inertial pos="0 0 0.012500000000000001" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.7e-06 2.6000000000000001e-06 8.7000000000000003e-07"/>
+                    <joint name="lh_shadow_hand/lh_LFJ2" class="lh_shadow_hand/middle_distal"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_49" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/f_middle"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_50" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.012500000000000001" pos="0 0 0.012500000000000001"/>
+                    <body name="lh_shadow_hand/lh_lfdistal" pos="0 0 0.025000000000000001" gravcomp="1">
+                      <inertial pos="0 0 0.013076900000000001" quat="1 0 0 1" mass="0.012999999999999999" diaginertia="1.28092e-06 1.1209200000000001e-06 5.3000000000000001e-07"/>
+                      <joint name="lh_shadow_hand/lh_LFJ1" class="lh_shadow_hand/middle_distal"/>
+                      <geom name="lh_shadow_hand//unnamed_geom_51" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.80000000000000004 0.20000000000000001 1" mesh="lh_shadow_hand/f_distal_pst"/>
+                      <geom name="lh_shadow_hand//unnamed_geom_52" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/f_distal_pst"/>
+                      <site name="lh_shadow_hand/lfdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.80000000000000004 0.20000000000000001 1" size="0.0040000000000000001" pos="0 0 0.025999999999999999"/>
+                      <site name="lh_shadow_hand/lh_LFJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                    </body>
+                    <site name="lh_shadow_hand/lh_LFJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                  </body>
+                  <site name="lh_shadow_hand/lh_LFJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                </body>
+                <site name="lh_shadow_hand/lh_LFJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+              </body>
+              <site name="lh_shadow_hand/lh_LFJ5_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+            </body>
+            <body name="lh_shadow_hand/lh_thbase" pos="-0.034000000000000002 -0.0085800000000000008 0.029000000000000001" quat="0 -0.382683 0 0.92388000000000003" gravcomp="1">
+              <inertial pos="0 0 0" mass="0.01" diaginertia="1.6e-07 1.6e-07 1.6e-07"/>
+              <joint name="lh_shadow_hand/lh_THJ5" class="lh_shadow_hand/thbase"/>
+              <geom name="lh_shadow_hand//unnamed_geom_53" class="lh_shadow_hand/plastic_collision" size="0.012999999999999999"/>
+              <body name="lh_shadow_hand/lh_thproximal" gravcomp="1">
+                <inertial pos="0 0 0.019" mass="0.040000000000000001" diaginertia="1.36e-05 1.36e-05 3.1300000000000001e-06"/>
+                <joint name="lh_shadow_hand/lh_THJ4" class="lh_shadow_hand/thproximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_54" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/th_proximal"/>
+                <geom name="lh_shadow_hand//unnamed_geom_55" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.010500000000000001 0.0089999999999999993" pos="0 0 0.02"/>
+                <body name="lh_shadow_hand/lh_thhub" pos="0 0 0.037999999999999999" gravcomp="1">
+                  <inertial pos="0 0 0" mass="0.0050000000000000001" diaginertia="9.9999999999999995e-07 9.9999999999999995e-07 2.9999999999999999e-07"/>
+                  <joint name="lh_shadow_hand/lh_THJ3" class="lh_shadow_hand/thhub"/>
+                  <geom name="lh_shadow_hand//unnamed_geom_56" class="lh_shadow_hand/plastic_collision" size="0.010999999999999999"/>
+                  <body name="lh_shadow_hand/lh_thmiddle" gravcomp="1">
+                    <inertial pos="0 0 0.016" mass="0.02" diaginertia="5.1000000000000003e-06 5.1000000000000003e-06 1.2100000000000001e-06"/>
+                    <joint name="lh_shadow_hand/lh_THJ2" class="lh_shadow_hand/thmiddle" range="0 0.69813199999999997"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_57" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/th_middle"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_58" class="lh_shadow_hand/plastic_collision" type="capsule" size="0.0089999999999999993 0.0089999999999999993" pos="0 0 0.012"/>
+                    <geom name="lh_shadow_hand//unnamed_geom_59" class="lh_shadow_hand/plastic_collision" size="0.01" pos="0 0 0.029999999999999999"/>
+                    <body name="lh_shadow_hand/lh_thdistal" pos="0 0 0.032000000000000001" quat="1 0 0 -1" gravcomp="1">
+                      <inertial pos="0 0 0.0145588" quat="1 0 0 1" mass="0.017000000000000001" diaginertia="2.37794e-06 2.2779400000000001e-06 9.9999999999999995e-07"/>
+                      <joint name="lh_shadow_hand/lh_THJ1" class="lh_shadow_hand/thdistal"/>
+                      <geom name="lh_shadow_hand//unnamed_geom_60" class="lh_shadow_hand/plastic_visual" rgba="0.80000000000000004 0.20000000000000001 0.80000000000000004 1" mesh="lh_shadow_hand/th_distal_pst"/>
+                      <geom name="lh_shadow_hand//unnamed_geom_61" class="lh_shadow_hand/plastic_collision" type="capsule" mesh="lh_shadow_hand/th_distal_pst"/>
+                      <site name="lh_shadow_hand/thdistal_site" type="sphere" group="4" rgba="0.80000000000000004 0.20000000000000001 0.80000000000000004 1" size="0.0040000000000000001" pos="0 0 0.0275"/>
+                      <site name="lh_shadow_hand/lh_THJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                    </body>
+                    <site name="lh_shadow_hand/lh_THJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                  </body>
+                  <site name="lh_shadow_hand/lh_THJ3_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+                </body>
+                <site name="lh_shadow_hand/lh_THJ4_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+              </body>
+              <site name="lh_shadow_hand/lh_THJ5_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+            </body>
+            <site name="lh_shadow_hand/lh_WRJ1_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+          </body>
+          <site name="lh_shadow_hand/lh_WRJ2_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+        </body>
+        <joint name="lh_shadow_hand/forearm_tx" type="slide" axis="-1 0 0" range="-0.46049999999999991 0.76049999999999995" damping="67.476218032726166"/>
+        <joint name="lh_shadow_hand/forearm_ty" type="slide" axis="0 0 1" range="0 0.059999999999999998" damping="67.476218032726166"/>
+        <site name="lh_shadow_hand/forearm_tx_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+        <site name="lh_shadow_hand/forearm_ty_site" type="box" group="4" rgba="0 1 0 1" size="0.001 0.001 0.001"/>
+      </body>
+    </body>
   </worldbody>
   <contact>
-    <exclude name="lh_shadow_hand//unnamed_contact_0" body1="lh_shadow_hand/lh_wrist" body2="lh_shadow_hand/lh_forearm"/>
-    <exclude name="lh_shadow_hand//unnamed_contact_1" body1="lh_shadow_hand/lh_thproximal" body2="lh_shadow_hand/lh_thmiddle"/>
     <exclude name="rh_shadow_hand//unnamed_contact_0" body1="rh_shadow_hand/rh_wrist" body2="rh_shadow_hand/rh_forearm"/>
     <exclude name="rh_shadow_hand//unnamed_contact_1" body1="rh_shadow_hand/rh_thproximal" body2="rh_shadow_hand/rh_thmiddle"/>
+    <exclude name="lh_shadow_hand//unnamed_contact_0" body1="lh_shadow_hand/lh_wrist" body2="lh_shadow_hand/lh_forearm"/>
+    <exclude name="lh_shadow_hand//unnamed_contact_1" body1="lh_shadow_hand/lh_thproximal" body2="lh_shadow_hand/lh_thmiddle"/>
   </contact>
   <tendon>
-    <fixed name="lh_shadow_hand/lh_FFJ0" class="lh_shadow_hand/">
-      <joint joint="lh_shadow_hand/lh_FFJ2" coef="1"/>
-      <joint joint="lh_shadow_hand/lh_FFJ1" coef="1"/>
-    </fixed>
-    <fixed name="lh_shadow_hand/lh_MFJ0" class="lh_shadow_hand/">
-      <joint joint="lh_shadow_hand/lh_MFJ2" coef="1"/>
-      <joint joint="lh_shadow_hand/lh_MFJ1" coef="1"/>
-    </fixed>
-    <fixed name="lh_shadow_hand/lh_RFJ0" class="lh_shadow_hand/">
-      <joint joint="lh_shadow_hand/lh_RFJ2" coef="1"/>
-      <joint joint="lh_shadow_hand/lh_RFJ1" coef="1"/>
-    </fixed>
-    <fixed name="lh_shadow_hand/lh_LFJ0" class="lh_shadow_hand/">
-      <joint joint="lh_shadow_hand/lh_LFJ2" coef="1"/>
-      <joint joint="lh_shadow_hand/lh_LFJ1" coef="1"/>
-    </fixed>
     <fixed name="rh_shadow_hand/rh_FFJ0" class="rh_shadow_hand/">
       <joint joint="rh_shadow_hand/rh_FFJ2" coef="1"/>
       <joint joint="rh_shadow_hand/rh_FFJ1" coef="1"/>
@@ -1080,22 +1064,24 @@
       <joint joint="rh_shadow_hand/rh_LFJ2" coef="1"/>
       <joint joint="rh_shadow_hand/rh_LFJ1" coef="1"/>
     </fixed>
+    <fixed name="lh_shadow_hand/lh_FFJ0" class="lh_shadow_hand/">
+      <joint joint="lh_shadow_hand/lh_FFJ2" coef="1"/>
+      <joint joint="lh_shadow_hand/lh_FFJ1" coef="1"/>
+    </fixed>
+    <fixed name="lh_shadow_hand/lh_MFJ0" class="lh_shadow_hand/">
+      <joint joint="lh_shadow_hand/lh_MFJ2" coef="1"/>
+      <joint joint="lh_shadow_hand/lh_MFJ1" coef="1"/>
+    </fixed>
+    <fixed name="lh_shadow_hand/lh_RFJ0" class="lh_shadow_hand/">
+      <joint joint="lh_shadow_hand/lh_RFJ2" coef="1"/>
+      <joint joint="lh_shadow_hand/lh_RFJ1" coef="1"/>
+    </fixed>
+    <fixed name="lh_shadow_hand/lh_LFJ0" class="lh_shadow_hand/">
+      <joint joint="lh_shadow_hand/lh_LFJ2" coef="1"/>
+      <joint joint="lh_shadow_hand/lh_LFJ1" coef="1"/>
+    </fixed>
   </tendon>
   <actuator>
-    <position name="lh_shadow_hand/lh_A_WRJ2" class="lh_shadow_hand/wrist_y" joint="lh_shadow_hand/lh_WRJ2"/>
-    <position name="lh_shadow_hand/lh_A_WRJ1" class="lh_shadow_hand/wrist_x" joint="lh_shadow_hand/lh_WRJ1"/>
-    <position name="lh_shadow_hand/lh_A_THJ4" class="lh_shadow_hand/thproximal" joint="lh_shadow_hand/lh_THJ4"/>
-    <position name="lh_shadow_hand/lh_A_THJ2" class="lh_shadow_hand/thmiddle" ctrlrange="0 0.69813199999999997" joint="lh_shadow_hand/lh_THJ2"/>
-    <position name="lh_shadow_hand/lh_A_FFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_FFJ3"/>
-    <position name="lh_shadow_hand/lh_A_FFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_FFJ0"/>
-    <position name="lh_shadow_hand/lh_A_MFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_MFJ3"/>
-    <position name="lh_shadow_hand/lh_A_MFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_MFJ0"/>
-    <position name="lh_shadow_hand/lh_A_RFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_RFJ3"/>
-    <position name="lh_shadow_hand/lh_A_RFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_RFJ0"/>
-    <position name="lh_shadow_hand/lh_A_LFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_LFJ3"/>
-    <position name="lh_shadow_hand/lh_A_LFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_LFJ0"/>
-    <position name="lh_shadow_hand/forearm_tx" class="lh_shadow_hand/" ctrlrange="-0.46049999999999991 0.76049999999999995" joint="lh_shadow_hand/forearm_tx" kp="300"/>
-    <position name="lh_shadow_hand/forearm_ty" class="lh_shadow_hand/" ctrlrange="0 0.059999999999999998" joint="lh_shadow_hand/forearm_ty" kp="300"/>
     <position name="rh_shadow_hand/rh_A_WRJ2" class="rh_shadow_hand/wrist_y" joint="rh_shadow_hand/rh_WRJ2"/>
     <position name="rh_shadow_hand/rh_A_WRJ1" class="rh_shadow_hand/wrist_x" joint="rh_shadow_hand/rh_WRJ1"/>
     <position name="rh_shadow_hand/rh_A_THJ4" class="rh_shadow_hand/thproximal" joint="rh_shadow_hand/rh_THJ4"/>
@@ -1110,62 +1096,22 @@
     <position name="rh_shadow_hand/rh_A_LFJ0" class="rh_shadow_hand/middle_distal" tendon="rh_shadow_hand/rh_LFJ0"/>
     <position name="rh_shadow_hand/forearm_tx" class="rh_shadow_hand/" ctrlrange="-0.76049999999999995 0.46049999999999991" joint="rh_shadow_hand/forearm_tx" kp="300"/>
     <position name="rh_shadow_hand/forearm_ty" class="rh_shadow_hand/" ctrlrange="0 0.059999999999999998" joint="rh_shadow_hand/forearm_ty" kp="300"/>
+    <position name="lh_shadow_hand/lh_A_WRJ2" class="lh_shadow_hand/wrist_y" joint="lh_shadow_hand/lh_WRJ2"/>
+    <position name="lh_shadow_hand/lh_A_WRJ1" class="lh_shadow_hand/wrist_x" joint="lh_shadow_hand/lh_WRJ1"/>
+    <position name="lh_shadow_hand/lh_A_THJ4" class="lh_shadow_hand/thproximal" joint="lh_shadow_hand/lh_THJ4"/>
+    <position name="lh_shadow_hand/lh_A_THJ2" class="lh_shadow_hand/thmiddle" ctrlrange="0 0.69813199999999997" joint="lh_shadow_hand/lh_THJ2"/>
+    <position name="lh_shadow_hand/lh_A_FFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_FFJ3"/>
+    <position name="lh_shadow_hand/lh_A_FFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_FFJ0"/>
+    <position name="lh_shadow_hand/lh_A_MFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_MFJ3"/>
+    <position name="lh_shadow_hand/lh_A_MFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_MFJ0"/>
+    <position name="lh_shadow_hand/lh_A_RFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_RFJ3"/>
+    <position name="lh_shadow_hand/lh_A_RFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_RFJ0"/>
+    <position name="lh_shadow_hand/lh_A_LFJ3" class="lh_shadow_hand/proximal" joint="lh_shadow_hand/lh_LFJ3"/>
+    <position name="lh_shadow_hand/lh_A_LFJ0" class="lh_shadow_hand/middle_distal" tendon="lh_shadow_hand/lh_LFJ0"/>
+    <position name="lh_shadow_hand/forearm_tx" class="lh_shadow_hand/" ctrlrange="-0.46049999999999991 0.76049999999999995" joint="lh_shadow_hand/forearm_tx" kp="300"/>
+    <position name="lh_shadow_hand/forearm_ty" class="lh_shadow_hand/" ctrlrange="0 0.059999999999999998" joint="lh_shadow_hand/forearm_ty" kp="300"/>
   </actuator>
   <sensor>
-    <torque name="lh_shadow_hand/lh_WRJ2_torque" site="lh_shadow_hand/lh_WRJ2_site"/>
-    <torque name="lh_shadow_hand/lh_WRJ1_torque" site="lh_shadow_hand/lh_WRJ1_site"/>
-    <torque name="lh_shadow_hand/lh_FFJ4_torque" site="lh_shadow_hand/lh_FFJ4_site"/>
-    <torque name="lh_shadow_hand/lh_FFJ3_torque" site="lh_shadow_hand/lh_FFJ3_site"/>
-    <torque name="lh_shadow_hand/lh_FFJ2_torque" site="lh_shadow_hand/lh_FFJ2_site"/>
-    <torque name="lh_shadow_hand/lh_FFJ1_torque" site="lh_shadow_hand/lh_FFJ1_site"/>
-    <torque name="lh_shadow_hand/lh_MFJ4_torque" site="lh_shadow_hand/lh_MFJ4_site"/>
-    <torque name="lh_shadow_hand/lh_MFJ3_torque" site="lh_shadow_hand/lh_MFJ3_site"/>
-    <torque name="lh_shadow_hand/lh_MFJ2_torque" site="lh_shadow_hand/lh_MFJ2_site"/>
-    <torque name="lh_shadow_hand/lh_MFJ1_torque" site="lh_shadow_hand/lh_MFJ1_site"/>
-    <torque name="lh_shadow_hand/lh_RFJ4_torque" site="lh_shadow_hand/lh_RFJ4_site"/>
-    <torque name="lh_shadow_hand/lh_RFJ3_torque" site="lh_shadow_hand/lh_RFJ3_site"/>
-    <torque name="lh_shadow_hand/lh_RFJ2_torque" site="lh_shadow_hand/lh_RFJ2_site"/>
-    <torque name="lh_shadow_hand/lh_RFJ1_torque" site="lh_shadow_hand/lh_RFJ1_site"/>
-    <torque name="lh_shadow_hand/lh_LFJ5_torque" site="lh_shadow_hand/lh_LFJ5_site"/>
-    <torque name="lh_shadow_hand/lh_LFJ4_torque" site="lh_shadow_hand/lh_LFJ4_site"/>
-    <torque name="lh_shadow_hand/lh_LFJ3_torque" site="lh_shadow_hand/lh_LFJ3_site"/>
-    <torque name="lh_shadow_hand/lh_LFJ2_torque" site="lh_shadow_hand/lh_LFJ2_site"/>
-    <torque name="lh_shadow_hand/lh_LFJ1_torque" site="lh_shadow_hand/lh_LFJ1_site"/>
-    <torque name="lh_shadow_hand/lh_THJ5_torque" site="lh_shadow_hand/lh_THJ5_site"/>
-    <torque name="lh_shadow_hand/lh_THJ4_torque" site="lh_shadow_hand/lh_THJ4_site"/>
-    <torque name="lh_shadow_hand/lh_THJ3_torque" site="lh_shadow_hand/lh_THJ3_site"/>
-    <torque name="lh_shadow_hand/lh_THJ2_torque" site="lh_shadow_hand/lh_THJ2_site"/>
-    <torque name="lh_shadow_hand/lh_THJ1_torque" site="lh_shadow_hand/lh_THJ1_site"/>
-    <torque name="lh_shadow_hand/forearm_tx_torque" site="lh_shadow_hand/forearm_tx_site"/>
-    <torque name="lh_shadow_hand/forearm_ty_torque" site="lh_shadow_hand/forearm_ty_site"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_WRJ2_velocity" actuator="lh_shadow_hand/lh_A_WRJ2"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_WRJ2_force" actuator="lh_shadow_hand/lh_A_WRJ2"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_WRJ1_velocity" actuator="lh_shadow_hand/lh_A_WRJ1"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_WRJ1_force" actuator="lh_shadow_hand/lh_A_WRJ1"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_THJ4_velocity" actuator="lh_shadow_hand/lh_A_THJ4"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_THJ4_force" actuator="lh_shadow_hand/lh_A_THJ4"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_THJ2_velocity" actuator="lh_shadow_hand/lh_A_THJ2"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_THJ2_force" actuator="lh_shadow_hand/lh_A_THJ2"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_FFJ3_velocity" actuator="lh_shadow_hand/lh_A_FFJ3"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_FFJ3_force" actuator="lh_shadow_hand/lh_A_FFJ3"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_FFJ0_velocity" actuator="lh_shadow_hand/lh_A_FFJ0"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_FFJ0_force" actuator="lh_shadow_hand/lh_A_FFJ0"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_MFJ3_velocity" actuator="lh_shadow_hand/lh_A_MFJ3"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_MFJ3_force" actuator="lh_shadow_hand/lh_A_MFJ3"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_MFJ0_velocity" actuator="lh_shadow_hand/lh_A_MFJ0"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_MFJ0_force" actuator="lh_shadow_hand/lh_A_MFJ0"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_RFJ3_velocity" actuator="lh_shadow_hand/lh_A_RFJ3"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_RFJ3_force" actuator="lh_shadow_hand/lh_A_RFJ3"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_RFJ0_velocity" actuator="lh_shadow_hand/lh_A_RFJ0"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_RFJ0_force" actuator="lh_shadow_hand/lh_A_RFJ0"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_LFJ3_velocity" actuator="lh_shadow_hand/lh_A_LFJ3"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_LFJ3_force" actuator="lh_shadow_hand/lh_A_LFJ3"/>
-    <actuatorvel name="lh_shadow_hand/lh_A_LFJ0_velocity" actuator="lh_shadow_hand/lh_A_LFJ0"/>
-    <actuatorfrc name="lh_shadow_hand/lh_A_LFJ0_force" actuator="lh_shadow_hand/lh_A_LFJ0"/>
-    <actuatorvel name="lh_shadow_hand/forearm_tx_velocity" actuator="lh_shadow_hand/forearm_tx"/>
-    <actuatorfrc name="lh_shadow_hand/forearm_tx_force" actuator="lh_shadow_hand/forearm_tx"/>
-    <actuatorvel name="lh_shadow_hand/forearm_ty_velocity" actuator="lh_shadow_hand/forearm_ty"/>
-    <actuatorfrc name="lh_shadow_hand/forearm_ty_force" actuator="lh_shadow_hand/forearm_ty"/>
     <torque name="rh_shadow_hand/rh_WRJ2_torque" site="rh_shadow_hand/rh_WRJ2_site"/>
     <torque name="rh_shadow_hand/rh_WRJ1_torque" site="rh_shadow_hand/rh_WRJ1_site"/>
     <torque name="rh_shadow_hand/rh_FFJ4_torque" site="rh_shadow_hand/rh_FFJ4_site"/>
@@ -1220,5 +1166,59 @@
     <actuatorfrc name="rh_shadow_hand/forearm_tx_force" actuator="rh_shadow_hand/forearm_tx"/>
     <actuatorvel name="rh_shadow_hand/forearm_ty_velocity" actuator="rh_shadow_hand/forearm_ty"/>
     <actuatorfrc name="rh_shadow_hand/forearm_ty_force" actuator="rh_shadow_hand/forearm_ty"/>
+    <torque name="lh_shadow_hand/lh_WRJ2_torque" site="lh_shadow_hand/lh_WRJ2_site"/>
+    <torque name="lh_shadow_hand/lh_WRJ1_torque" site="lh_shadow_hand/lh_WRJ1_site"/>
+    <torque name="lh_shadow_hand/lh_FFJ4_torque" site="lh_shadow_hand/lh_FFJ4_site"/>
+    <torque name="lh_shadow_hand/lh_FFJ3_torque" site="lh_shadow_hand/lh_FFJ3_site"/>
+    <torque name="lh_shadow_hand/lh_FFJ2_torque" site="lh_shadow_hand/lh_FFJ2_site"/>
+    <torque name="lh_shadow_hand/lh_FFJ1_torque" site="lh_shadow_hand/lh_FFJ1_site"/>
+    <torque name="lh_shadow_hand/lh_MFJ4_torque" site="lh_shadow_hand/lh_MFJ4_site"/>
+    <torque name="lh_shadow_hand/lh_MFJ3_torque" site="lh_shadow_hand/lh_MFJ3_site"/>
+    <torque name="lh_shadow_hand/lh_MFJ2_torque" site="lh_shadow_hand/lh_MFJ2_site"/>
+    <torque name="lh_shadow_hand/lh_MFJ1_torque" site="lh_shadow_hand/lh_MFJ1_site"/>
+    <torque name="lh_shadow_hand/lh_RFJ4_torque" site="lh_shadow_hand/lh_RFJ4_site"/>
+    <torque name="lh_shadow_hand/lh_RFJ3_torque" site="lh_shadow_hand/lh_RFJ3_site"/>
+    <torque name="lh_shadow_hand/lh_RFJ2_torque" site="lh_shadow_hand/lh_RFJ2_site"/>
+    <torque name="lh_shadow_hand/lh_RFJ1_torque" site="lh_shadow_hand/lh_RFJ1_site"/>
+    <torque name="lh_shadow_hand/lh_LFJ5_torque" site="lh_shadow_hand/lh_LFJ5_site"/>
+    <torque name="lh_shadow_hand/lh_LFJ4_torque" site="lh_shadow_hand/lh_LFJ4_site"/>
+    <torque name="lh_shadow_hand/lh_LFJ3_torque" site="lh_shadow_hand/lh_LFJ3_site"/>
+    <torque name="lh_shadow_hand/lh_LFJ2_torque" site="lh_shadow_hand/lh_LFJ2_site"/>
+    <torque name="lh_shadow_hand/lh_LFJ1_torque" site="lh_shadow_hand/lh_LFJ1_site"/>
+    <torque name="lh_shadow_hand/lh_THJ5_torque" site="lh_shadow_hand/lh_THJ5_site"/>
+    <torque name="lh_shadow_hand/lh_THJ4_torque" site="lh_shadow_hand/lh_THJ4_site"/>
+    <torque name="lh_shadow_hand/lh_THJ3_torque" site="lh_shadow_hand/lh_THJ3_site"/>
+    <torque name="lh_shadow_hand/lh_THJ2_torque" site="lh_shadow_hand/lh_THJ2_site"/>
+    <torque name="lh_shadow_hand/lh_THJ1_torque" site="lh_shadow_hand/lh_THJ1_site"/>
+    <torque name="lh_shadow_hand/forearm_tx_torque" site="lh_shadow_hand/forearm_tx_site"/>
+    <torque name="lh_shadow_hand/forearm_ty_torque" site="lh_shadow_hand/forearm_ty_site"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_WRJ2_velocity" actuator="lh_shadow_hand/lh_A_WRJ2"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_WRJ2_force" actuator="lh_shadow_hand/lh_A_WRJ2"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_WRJ1_velocity" actuator="lh_shadow_hand/lh_A_WRJ1"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_WRJ1_force" actuator="lh_shadow_hand/lh_A_WRJ1"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_THJ4_velocity" actuator="lh_shadow_hand/lh_A_THJ4"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_THJ4_force" actuator="lh_shadow_hand/lh_A_THJ4"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_THJ2_velocity" actuator="lh_shadow_hand/lh_A_THJ2"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_THJ2_force" actuator="lh_shadow_hand/lh_A_THJ2"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_FFJ3_velocity" actuator="lh_shadow_hand/lh_A_FFJ3"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_FFJ3_force" actuator="lh_shadow_hand/lh_A_FFJ3"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_FFJ0_velocity" actuator="lh_shadow_hand/lh_A_FFJ0"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_FFJ0_force" actuator="lh_shadow_hand/lh_A_FFJ0"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_MFJ3_velocity" actuator="lh_shadow_hand/lh_A_MFJ3"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_MFJ3_force" actuator="lh_shadow_hand/lh_A_MFJ3"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_MFJ0_velocity" actuator="lh_shadow_hand/lh_A_MFJ0"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_MFJ0_force" actuator="lh_shadow_hand/lh_A_MFJ0"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_RFJ3_velocity" actuator="lh_shadow_hand/lh_A_RFJ3"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_RFJ3_force" actuator="lh_shadow_hand/lh_A_RFJ3"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_RFJ0_velocity" actuator="lh_shadow_hand/lh_A_RFJ0"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_RFJ0_force" actuator="lh_shadow_hand/lh_A_RFJ0"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_LFJ3_velocity" actuator="lh_shadow_hand/lh_A_LFJ3"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_LFJ3_force" actuator="lh_shadow_hand/lh_A_LFJ3"/>
+    <actuatorvel name="lh_shadow_hand/lh_A_LFJ0_velocity" actuator="lh_shadow_hand/lh_A_LFJ0"/>
+    <actuatorfrc name="lh_shadow_hand/lh_A_LFJ0_force" actuator="lh_shadow_hand/lh_A_LFJ0"/>
+    <actuatorvel name="lh_shadow_hand/forearm_tx_velocity" actuator="lh_shadow_hand/forearm_tx"/>
+    <actuatorfrc name="lh_shadow_hand/forearm_tx_force" actuator="lh_shadow_hand/forearm_tx"/>
+    <actuatorvel name="lh_shadow_hand/forearm_ty_velocity" actuator="lh_shadow_hand/forearm_ty"/>
+    <actuatorfrc name="lh_shadow_hand/forearm_ty_force" actuator="lh_shadow_hand/forearm_ty"/>
   </sensor>
 </mujoco>

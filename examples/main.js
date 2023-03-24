@@ -263,6 +263,7 @@ export class RoboPianistDemo {
     for (let i = 0; i < 88; i++) {
       if (state_change[i] && !prevActivated[i]) {
         let note = key2note.get(i);
+        console.log(note);
         sampler.triggerAttack(note);
       }
     }
