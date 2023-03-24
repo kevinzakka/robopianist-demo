@@ -225,9 +225,6 @@ export class RoboPianistDemo {
   }
 
   processPianoState() {
-    // Call Tone.start() to enable audio output.
-    Tone.start();
-
     let activation = new Array(88).fill(false);
 
     // Detect which keys are pressed and color them accordingly.
@@ -239,8 +236,10 @@ export class RoboPianistDemo {
         if (jnt_adr < 0) { continue; }
         let qpos_adr = this.model.jnt_qposadr()[jnt_adr];
         let qpos = this.simulation.qpos()[qpos_adr];
+        let qpos_min = this.model.jnt_range()[2*jnt_adr + 0];
         let qpos_max = this.model.jnt_range()[2*jnt_adr + 1];
-        if (Math.abs(qpos - qpos_max) < 0.5 * Math.PI / 180.0) {
+        let qpos_state = Math.max(qpos_min, Math.min(qpos, qpos_max));
+        if (Math.abs(qpos_state - qpos_max) <= 0.00872665) {
           let key = parseInt(this.bodies[b].name.split("_")[2]);
           activation[key] = true;
           this.bodies[b].children[0].material.color.setRGB(0.2, 0.8, 0.2);
