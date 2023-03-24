@@ -157,6 +157,9 @@ export class RoboPianistDemo {
     this.tmpQuat = new THREE.Quaternion();
     this.updateGUICallbacks = [];
 
+    this._steps = 0;
+    this._csteps = 0;
+
     this.container = document.createElement( 'div' );
     document.body.appendChild( this.container );
 
@@ -293,15 +296,15 @@ export class RoboPianistDemo {
       if (timeMS - this.mujoco_time > 35.0) { this.mujoco_time = timeMS; }
       while (this.mujoco_time < timeMS) {
 
-        // Jitter the control state with gaussian random noise
-        if (this.pianoControl) {
+        if (this.pianoControl && this._steps % 10 == 0) {
           let currentCtrl = this.simulation.ctrl();
           for (let i = 0; i < currentCtrl.length; i++) {
-            // Play one control frame every 100ms
-            currentCtrl[i] = this.pianoControl.data[
-              (currentCtrl.length * Math.floor(this.mujoco_time / 100)) + i];
+            let idx = Math.min(this._csteps * this.model.nu() + i, this.pianoControl.data.length - 1);
+            currentCtrl[i] = this.pianoControl.data[idx];
             this.params["Actuator " + i] = currentCtrl[i];
           }
+          this._csteps++;
+          console.log("\n");
         }
 
         if (this.params["ctrlnoisestd"] > 0.0) {
@@ -335,8 +338,8 @@ export class RoboPianistDemo {
         }
 
         this.simulation.step();
+        this._steps++;
         if (this.params.scene == "piano_with_shadow_hands/scene.xml") { this.processPianoState(); }
-
         this.mujoco_time += timestep * 1000.0;
       }
 
