@@ -3,6 +3,7 @@ import * as THREE           from 'three';
 import { GUI              } from '../node_modules/three/examples/jsm/libs/lil-gui.module.min.js';
 import { OrbitControls    } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
+import  npyjs               from './utils/npy.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
 import   load_mujoco        from '../dist/mujoco_wasm.js';
 
@@ -208,6 +209,13 @@ export class RoboPianistDemo {
 
     this.gui = new GUI();
     setupGUI(this);
+
+    this.npyjs = new npyjs();
+    this.npyjs.load("./examples/scenes/piano_with_shadow_hands/twinkle_twinkle_actions.npy", (loaded) => {
+      this.pianoControl = loaded;
+      console.log(this.pianoControl);
+      this.currentFrame = 0;
+    });
   }
 
   onWindowResize() {
@@ -286,6 +294,16 @@ export class RoboPianistDemo {
       while (this.mujoco_time < timeMS) {
 
         // Jitter the control state with gaussian random noise
+        if (this.pianoControl) {
+          let currentCtrl = this.simulation.ctrl();
+          for (let i = 0; i < currentCtrl.length; i++) {
+            // Play one control frame every 100ms
+            currentCtrl[i] = this.pianoControl.data[
+              (currentCtrl.length * Math.floor(this.mujoco_time / 100)) + i];
+            this.params["Actuator " + i] = currentCtrl[i];
+          }
+        }
+
         if (this.params["ctrlnoisestd"] > 0.0) {
           let rate  = Math.exp(-timestep / Math.max(1e-10, this.params["ctrlnoiserate"]));
           let scale = this.params["ctrlnoisestd"] * Math.sqrt(1 - rate * rate);
