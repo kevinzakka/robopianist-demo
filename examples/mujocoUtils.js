@@ -26,11 +26,16 @@ export function setupGUI(parentContext) {
 
   // Add scene selection dropdown.
   let reload = reloadFunc.bind(parentContext);
-  parentContext.gui.add(parentContext.params, 'scene', {
-    "Humanoid": "humanoid.xml", "Cassie": "agility_cassie/scene.xml",
-    "Hammock": "hammock.xml", "Balloons": "balloons.xml", "Hand": "shadow_hand/scene_right.xml",
-    "Flag": "flag.xml", "Mug": "mug.xml", "RoboPianist": "piano_with_shadow_hands/scene.xml",
-  }).name('Example Scene').onChange(reload);
+  parentContext.gui.add(parentContext.params, 'song', {
+    "TwinkleTwinkle": "twinkle_twinkle_actions.npy", "AlsoTwinkleTwinkle": "twinkle_twinkle_actions.npy"
+  }).name('Song').onChange((value) => {
+    parentContext.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+value, (loaded) => {
+      parentContext.pianoControl = loaded;
+      parentContext.controlFrameNumber = 0;
+      parentContext.simulation.resetData();
+      parentContext.simulation.forward();
+    });
+  });
 
   // Add a help menu.
   // Parameters:
@@ -134,6 +139,7 @@ export function setupGUI(parentContext) {
   //  When paused, a "pause" text in white is displayed in the top left corner.
   //  Can also be triggered by pressing the spacebar.
   const pauseSimulation = simulationFolder.add(parentContext.params, 'paused').name('Pause Simulation');
+  const pauseSong = simulationFolder.add(parentContext.params, 'songPaused').name('Pause Song');
   pauseSimulation.onChange((value) => {
     if (value) {
       const pausedText = document.createElement('div');
@@ -164,11 +170,11 @@ export function setupGUI(parentContext) {
   //  Name: "Reload".
   //  When pressed, calls the reload function.
   //  Can also be triggered by pressing ctrl + L.
-  simulationFolder.add({reload: () => { reload(); }}, 'reload').name('Reload');
-  document.addEventListener('keydown', (event) => {
-    if (event.ctrlKey && event.code === 'KeyL') { reload();  event.preventDefault(); }});
-  actionInnerHTML += 'Reload XML<br>';
-  keyInnerHTML += 'Ctrl L<br>';
+  //simulationFolder.add({reload: () => { reload(); }}, 'reload').name('Reload');
+  //document.addEventListener('keydown', (event) => {
+  //  if (event.ctrlKey && event.code === 'KeyL') { reload();  event.preventDefault(); }});
+  //actionInnerHTML += 'Reload XML<br>';
+  //keyInnerHTML += 'Ctrl L<br>';
 
   // Add reset simulation button.
   // Parameters:
@@ -177,6 +183,7 @@ export function setupGUI(parentContext) {
   //  When pressed, resets the simulation to the initial state.
   //  Can also be triggered by pressing backspace.
   const resetSimulation = () => {
+    parentContext.controlFrameNumber = 0;
     parentContext.simulation.resetData();
     parentContext.simulation.forward();
   };
@@ -187,24 +194,24 @@ export function setupGUI(parentContext) {
   keyInnerHTML += 'Backspace<br>';
 
   // Add keyframe slider.
-  let nkeys = parentContext.model.nkey();
-  let keyframeGUI = simulationFolder.add(parentContext.params, "keyframeNumber", 0, nkeys - 1, 1).name('Load Keyframe').listen();
-  keyframeGUI.onChange((value) => {
-    if (value < parentContext.model.nkey()) {
-      parentContext.simulation.qpos().set(parentContext.model.key_qpos().slice(
-        value * parentContext.model.nq(), (value + 1) * parentContext.model.nq())); }});
-  parentContext.updateGUICallbacks.push((model, simulation, params) => {
-    let nkeys = parentContext.model.nkey();
-    console.log("new model loaded. has " + nkeys + " keyframes.");
-    if (nkeys > 0) {
-      keyframeGUI.max(nkeys - 1);
-      keyframeGUI.domElement.style.opacity = 1.0;
-    } else {
-      // Disable keyframe slider if no keyframes are available.
-      keyframeGUI.max(0);
-      keyframeGUI.domElement.style.opacity = 0.5;
-    }
-  });
+  //let nkeys = parentContext.model.nkey();
+  //let keyframeGUI = simulationFolder.add(parentContext.params, "keyframeNumber", 0, nkeys - 1, 1).name('Load Keyframe').listen();
+  //keyframeGUI.onChange((value) => {
+  //  if (value < parentContext.model.nkey()) {
+  //    parentContext.simulation.qpos().set(parentContext.model.key_qpos().slice(
+  //      value * parentContext.model.nq(), (value + 1) * parentContext.model.nq())); }});
+  //parentContext.updateGUICallbacks.push((model, simulation, params) => {
+  //  let nkeys = parentContext.model.nkey();
+  //  console.log("new model loaded. has " + nkeys + " keyframes.");
+  //  if (nkeys > 0) {
+  //    keyframeGUI.max(nkeys - 1);
+  //    keyframeGUI.domElement.style.opacity = 1.0;
+  //  } else {
+  //    // Disable keyframe slider if no keyframes are available.
+  //    keyframeGUI.max(0);
+  //    keyframeGUI.domElement.style.opacity = 0.5;
+  //  }
+  //});
 
   // Add sliders for ctrlnoiserate and ctrlnoisestd; min = 0, max = 2, step = 0.01.
   simulationFolder.add(parentContext.params, 'ctrlnoiserate', 0.0, 2.0, 0.01).name('Noise rate' );
@@ -496,68 +503,20 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
  * @param {mujoco} mujoco */
 export async function downloadExampleScenesFolder(mujoco) {
   let allFiles = [
-    "22_humanoids.xml",
-    "adhesion.xml",
-    "agility_cassie/assets/achilles-rod.obj",
-    "agility_cassie/assets/cassie-texture.png",
-    "agility_cassie/assets/foot-crank.obj",
-    "agility_cassie/assets/foot.obj",
-    "agility_cassie/assets/heel-spring.obj",
-    "agility_cassie/assets/hip-pitch.obj",
-    "agility_cassie/assets/hip-roll.obj",
-    "agility_cassie/assets/hip-yaw.obj",
-    "agility_cassie/assets/knee-spring.obj",
-    "agility_cassie/assets/knee.obj",
-    "agility_cassie/assets/pelvis.obj",
-    "agility_cassie/assets/plantar-rod.obj",
-    "agility_cassie/assets/shin.obj",
-    "agility_cassie/assets/tarsus.obj",
-    "agility_cassie/cassie.xml",
-    "agility_cassie/scene.xml",
-    "arm26.xml",
-    "balloons.xml",
-    "flag.xml",
-    "hammock.xml",
-    "humanoid.xml",
-    "humanoid_body.xml",
-    "mug.obj",
-    "mug.png",
-    "mug.xml",
-    "scene.xml",
-    "shadow_hand/assets/f_distal_pst.obj",
-    "shadow_hand/assets/f_knuckle.obj",
-    "shadow_hand/assets/f_middle.obj",
-    "shadow_hand/assets/f_proximal.obj",
-    "shadow_hand/assets/forearm_0.obj",
-    "shadow_hand/assets/forearm_1.obj",
-    "shadow_hand/assets/forearm_collision.obj",
-    "shadow_hand/assets/lf_metacarpal.obj",
-    "shadow_hand/assets/mounting_plate.obj",
-    "shadow_hand/assets/palm.obj",
-    "shadow_hand/assets/th_distal_pst.obj",
-    "shadow_hand/assets/th_middle.obj",
-    "shadow_hand/assets/th_proximal.obj",
-    "shadow_hand/assets/wrist.obj",
-    "shadow_hand/left_hand.xml",
-    "shadow_hand/right_hand.xml",
-    "shadow_hand/scene_left.xml",
-    "shadow_hand/scene_right.xml",
-    "simple.xml",
-    "slider_crank.xml",
+    "piano_with_shadow_hands/f_distal_pst-927e7e0da0ee76e69c0444b22bade45ff20ab5ee.obj",
+    "piano_with_shadow_hands/f_knuckle-4e74747ced8908917157e00df691de5cfc71808c.obj",
+    "piano_with_shadow_hands/f_middle-c817011a5fccb8dac0f3201f10aa30ffa74db8b6.obj",
+    "piano_with_shadow_hands/f_proximal-2b944834ac12ce9bb152073bce3db339405bc76d.obj",
+    "piano_with_shadow_hands/forearm_0-20abf0e17ef9afc17a625f75fc0ad21f31b2ff9a.obj",
+    "piano_with_shadow_hands/forearm_1-f5b8ac92a6e1b0a6b27c50dac2004867e6c0fb5b.obj",
+    "piano_with_shadow_hands/forearm_collision-3ef43cdb2273599be12fc3270639b8782c869cb4.obj",
     "piano_with_shadow_hands/lf_metacarpal-43a8cbd60c754686e733e10c0c28ff082b46a917.obj",
     "piano_with_shadow_hands/palm-20de86ceb3b063e7ca1bf25fa6ddd07c068d6a70.obj",
-    "piano_with_shadow_hands/f_proximal-2b944834ac12ce9bb152073bce3db339405bc76d.obj",
-    "piano_with_shadow_hands/forearm_collision-3ef43cdb2273599be12fc3270639b8782c869cb4.obj",
-    "piano_with_shadow_hands/forearm_0-20abf0e17ef9afc17a625f75fc0ad21f31b2ff9a.obj",
-    "piano_with_shadow_hands/f_middle-c817011a5fccb8dac0f3201f10aa30ffa74db8b6.obj",
-    "piano_with_shadow_hands/f_distal_pst-927e7e0da0ee76e69c0444b22bade45ff20ab5ee.obj",
+    "piano_with_shadow_hands/scene.xml",
     "piano_with_shadow_hands/th_distal_pst-c003d5be2d6a841babda3d88c51010617a2ba4bb.obj",
-    "piano_with_shadow_hands/f_knuckle-4e74747ced8908917157e00df691de5cfc71808c.obj",
     "piano_with_shadow_hands/th_middle-c6937ecc6bf6b01a854aaffb71f3beeda05f8ac3.obj",
     "piano_with_shadow_hands/th_proximal-836fc483b89bf08806ab50636ab1fe738a54406e.obj",
-    "piano_with_shadow_hands/forearm_1-f5b8ac92a6e1b0a6b27c50dac2004867e6c0fb5b.obj",
-    "piano_with_shadow_hands/wrist-87545134a753f219a1f55310cc200489b3a03c47.obj",
-    "piano_with_shadow_hands/scene.xml",
+    "piano_with_shadow_hands/wrist-87545134a753f219a1f55310cc200489b3a03c47.obj"
   ];
 
   let requests = allFiles.map((url) => fetch("./examples/scenes/" + url));
