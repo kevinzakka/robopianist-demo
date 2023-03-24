@@ -4,135 +4,9 @@ import { GUI              } from '../node_modules/three/examples/jsm/libs/lil-gu
 import { OrbitControls    } from '../node_modules/three/examples/jsm/controls/OrbitControls.js';
 import { DragStateManager } from './utils/DragStateManager.js';
 import  npyjs               from './utils/npy.js';
+import { key2note }         from './utils/musicUtils.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
 import   load_mujoco        from '../dist/mujoco_wasm.js';
-
-const sampler = new Tone.Sampler({
-  urls: {
-    A1: "A1.mp3",
-    A2: "A2.mp3",
-    A3: "A3.mp3",
-    A4: "A4.mp3",
-    A5: "A5.mp3",
-    A6: "A6.mp3",
-    A7: "A7.mp3",
-    C1: "C1.mp3",
-    C2: "C2.mp3",
-    C3: "C3.mp3",
-    C4: "C4.mp3",
-    C5: "C5.mp3",
-    C6: "C6.mp3",
-    C7: "C7.mp3",
-    C8: "C8.mp3",
-    "D#1": "Ds1.mp3",
-    "D#2": "Ds2.mp3",
-    "D#3": "Ds3.mp3",
-    "D#4": "Ds4.mp3",
-    "D#5": "Ds5.mp3",
-    "D#6": "Ds6.mp3",
-    "D#7": "Ds7.mp3",
-    "F#1": "Fs1.mp3",
-    "F#2": "Fs2.mp3",
-    "F#3": "Fs3.mp3",
-    "F#4": "Fs4.mp3",
-    "F#5": "Fs5.mp3",
-    "F#6": "Fs6.mp3",
-    "F#7": "Fs7.mp3",
-	},
-	baseUrl: "https://tonejs.github.io/audio/salamander/",
-}).toDestination();
-let prevActivated = new Array(88).fill(false);
-
-const key2note = new Map([
-  [0, 'A0'],
-  [1, 'A#0'],
-  [2, 'B0'],
-  [3, 'C1'],
-  [4, 'C#1'],
-  [5, 'D1'],
-  [6, 'D#1'],
-  [7, 'E1'],
-  [8, 'F1'],
-  [9, 'F#1'],
-  [10, 'G1'],
-  [11, 'G#1'],
-  [12, 'A1'],
-  [13, 'A#1'],
-  [14, 'B1'],
-  [15, 'C2'],
-  [16, 'C#2'],
-  [17, 'D2'],
-  [18, 'D#2'],
-  [19, 'E2'],
-  [20, 'F2'],
-  [21, 'F#2'],
-  [22, 'G2'],
-  [23, 'G#2'],
-  [24, 'A2'],
-  [25, 'A#2'],
-  [26, 'B2'],
-  [27, 'C3'],
-  [28, 'C#3'],
-  [29, 'D3'],
-  [30, 'D#3'],
-  [31, 'E3'],
-  [32, 'F3'],
-  [33, 'F#3'],
-  [34, 'G3'],
-  [35, 'G#3'],
-  [36, 'A3'],
-  [37, 'A#3'],
-  [38, 'B3'],
-  [39, 'C4'],
-  [40, 'C#4'],
-  [41, 'D4'],
-  [42, 'D#4'],
-  [43, 'E4'],
-  [44, 'F4'],
-  [45, 'F#4'],
-  [46, 'G4'],
-  [47, 'G#4'],
-  [48, 'A4'],
-  [49, 'A#4'],
-  [50, 'B4'],
-  [51, 'C5'],
-  [52, 'C#5'],
-  [53, 'D5'],
-  [54, 'D#5'],
-  [55, 'E5'],
-  [56, 'F5'],
-  [57, 'F#5'],
-  [58, 'G5'],
-  [59, 'G#5'],
-  [60, 'A5'],
-  [61, 'A#5'],
-  [62, 'B5'],
-  [63, 'C6'],
-  [64, 'C#6'],
-  [65, 'D6'],
-  [66, 'D#6'],
-  [67, 'E6'],
-  [68, 'F6'],
-  [69, 'F#6'],
-  [70, 'G6'],
-  [71, 'G#6'],
-  [72, 'A6'],
-  [73, 'A#6'],
-  [74, 'B6'],
-  [75, 'C7'],
-  [76, 'C#7'],
-  [77, 'D7'],
-  [78, 'D#7'],
-  [79, 'E7'],
-  [80, 'F7'],
-  [81, 'F#7'],
-  [82, 'G7'],
-  [83, 'G#7'],
-  [84, 'A7'],
-  [85, 'A#7'],
-  [86, 'B7'],
-  [87, 'C8']
-]);
 
 // Load the MuJoCo Module
 const mujoco = await load_mujoco();
@@ -194,6 +68,43 @@ export class RoboPianistDemo {
     this.controls.screenSpacePanning = true;
     this.controls.update();
 
+    // Music-related variables.
+    this.prevActivated = new Array(88).fill(false);
+    this.sampler = new Tone.Sampler({
+      urls: {
+        A1: "A1.mp3",
+        A2: "A2.mp3",
+        A3: "A3.mp3",
+        A4: "A4.mp3",
+        A5: "A5.mp3",
+        A6: "A6.mp3",
+        A7: "A7.mp3",
+        C1: "C1.mp3",
+        C2: "C2.mp3",
+        C3: "C3.mp3",
+        C4: "C4.mp3",
+        C5: "C5.mp3",
+        C6: "C6.mp3",
+        C7: "C7.mp3",
+        C8: "C8.mp3",
+        "D#1": "Ds1.mp3",
+        "D#2": "Ds2.mp3",
+        "D#3": "Ds3.mp3",
+        "D#4": "Ds4.mp3",
+        "D#5": "Ds5.mp3",
+        "D#6": "Ds6.mp3",
+        "D#7": "Ds7.mp3",
+        "F#1": "Fs1.mp3",
+        "F#2": "Fs2.mp3",
+        "F#3": "Fs3.mp3",
+        "F#4": "Fs4.mp3",
+        "F#5": "Fs5.mp3",
+        "F#6": "Fs6.mp3",
+        "F#7": "Fs7.mp3",
+      },
+      baseUrl: "https://tonejs.github.io/audio/salamander/",
+    }).toDestination();
+
     window.addEventListener('resize', this.onWindowResize.bind(this));
 
     // Initialize the Drag State Manager.
@@ -214,7 +125,6 @@ export class RoboPianistDemo {
     this.npyjs = new npyjs();
     this.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+this.params.song, (loaded) => {
       this.pianoControl = loaded;
-      console.log(this.pianoControl);
       this.controlFrameNumber = 0;
     });
   }
@@ -257,14 +167,14 @@ export class RoboPianistDemo {
     // xor the current activation with the previous activation.
     let state_change = new Array(88).fill(false);
     for (let i = 0; i < 88; i++) {
-      state_change[i] = activation[i] ^ prevActivated[i];
+      state_change[i] = activation[i] ^ this.prevActivated[i];
     }
 
     // Note on events.
     for (let i = 0; i < 88; i++) {
-      if (state_change[i] && !prevActivated[i]) {
+      if (state_change[i] && !this.prevActivated[i]) {
         let note = key2note.get(i);
-        sampler.triggerAttack(note);
+        this.sampler.triggerAttack(note);
       }
     }
 
@@ -272,13 +182,13 @@ export class RoboPianistDemo {
     for (let i = 0; i < 88; i++) {
       if (state_change[i] && !activation[i]) {
         let note = key2note.get(i);
-        sampler.triggerRelease(note);
+        this.sampler.triggerRelease(note);
       }
     }
 
     // Update the previous activation.
     for (let i = 0; i < 88; i++) {
-      prevActivated[i] = activation[i];
+      this.prevActivated[i] = activation[i];
     }
   }
 
@@ -344,42 +254,14 @@ export class RoboPianistDemo {
 
         this.simulation.step();
 
-        this.processPianoState(); 
+        this.processPianoState();
 
         this.mujoco_time += timestep * 1000.0;
       }
 
     } else if (this.params["paused"]) {
-      /*this.dragStateManager.update(); // Update the world-space force origin
-      let dragged = this.dragStateManager.physicsObject;
-      if (dragged && dragged.bodyID) {
-        let b = dragged.bodyID;
-        getPosition  (this.simulation.xpos (), b, this.tmpVec , false); // Get raw coordinate from MuJoCo
-        getQuaternion(this.simulation.xquat(), b, this.tmpQuat, false); // Get raw coordinate from MuJoCo
-
-        let offset = toMujocoPos(this.dragStateManager.currentWorld.clone()
-          .sub(this.dragStateManager.worldHit).multiplyScalar(0.3));
-        if (this.model.body_mocapid()[b] >= 0) {
-          // Set the root body's mocap position...
-          console.log("Trying to move mocap body", b);
-          let addr = this.model.body_mocapid()[b] * 3;
-          let pos  = this.simulation.mocap_pos();
-          pos[addr+0] += offset.x;
-          pos[addr+1] += offset.y;
-          pos[addr+2] += offset.z;
-        } else {
-          // Set the root body's position directly...
-          let root = this.model.body_rootid()[b];
-          let addr = this.model.jnt_qposadr()[this.model.body_jntadr()[root]];
-          let pos  = this.simulation.qpos();
-          pos[addr+0] += offset.x;
-          pos[addr+1] += offset.y;
-          pos[addr+2] += offset.z;
-        }
-      }*/
-
       this.simulation.forward();
-      sampler.releaseAll();
+      this.sampler.releaseAll();
     }
 
     // Update body transforms.

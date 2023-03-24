@@ -11,6 +11,7 @@ export async function reloadFunc() {
   for (let i = 0; i < this.updateGUICallbacks.length; i++) {
     this.updateGUICallbacks[i](this.model, this.simulation, this.params);
   }
+  this.prevActivated.fill(false);
 }
 
 /** @param {RoboPianistDemo} parentContext*/
@@ -290,7 +291,7 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
     parent.camera.position.set(-0.6, 0.7, 0.0);
     parent.controls.target.set(0, 0.0, 0);
     parent.controls.update();
-  
+
     /** @type {Object.<number, THREE.Group>} */
     let bodies = {};
     /** @type {Object.<number, THREE.BufferGeometry>} */
