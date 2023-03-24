@@ -137,19 +137,16 @@ const key2note = new Map([
 const mujoco = await load_mujoco();
 
 // Set up Emscripten's Virtual File System
-var initialScene = "humanoid.xml";
+var initialScene = "piano_with_shadow_hands/scene.xml";
 mujoco.FS.mkdir('/working');
 mujoco.FS.mount(mujoco.MEMFS, { root: '.' }, '/working');
-mujoco.FS.writeFile("/working/" + initialScene, await(await fetch("./examples/scenes/" + initialScene)).text());
 
-export class MuJoCoDemo {
+export class RoboPianistDemo {
   constructor() {
     this.mujoco = mujoco;
 
-    // Load in the state from XML
-    this.model      = new mujoco.Model("/working/" + initialScene);
-    this.state      = new mujoco.State(this.model);
-    this.simulation = new mujoco.Simulation(this.model, this.state);
+    // Activate Audio upon first interaction
+    document.addEventListener('pointerdown', () => { if (Tone.context.state !== "running") { Tone.context.resume(); } });
 
     // Define Random State Variables
     this.params = { scene: initialScene, paused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
@@ -280,6 +277,9 @@ export class MuJoCoDemo {
   render(timeMS) {
     this.controls.update();
 
+    // Return if the model hasn't been loaded yet
+    if (!this.model) { return; }
+
     if (!this.params["paused"]) {
       let timestep = this.model.getOptions().timestep;
       if (timeMS - this.mujoco_time > 35.0) { this.mujoco_time = timeMS; }
@@ -378,5 +378,5 @@ export class MuJoCoDemo {
   }
 }
 
-let demo = new MuJoCoDemo();
+let demo = new RoboPianistDemo();
 await demo.init();
