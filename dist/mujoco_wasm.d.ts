@@ -275,9 +275,447 @@ type ReturnToType<R extends Emscripten.JSType | null> = R extends null
 ? null
 : StringToType<Exclude<R, null>>;
 
+// ENUMS
+/**  disable default feature bitflags        */
+export enum mjtDisableBit {
+    /** entire constraint solver                 */
+    mjDSBL_CONSTRAINT        ,
+    /** equality constraints                     */
+    mjDSBL_EQUALITY          ,
+    /** joint and tendon frictionloss constraints */
+    mjDSBL_FRICTIONLOSS      ,
+    /** joint and tendon limit constraints       */
+    mjDSBL_LIMIT             ,
+    /** contact constraints                      */
+    mjDSBL_CONTACT           ,
+    /** passive forces                           */
+    mjDSBL_PASSIVE           ,
+    /** gravitational forces                     */
+    mjDSBL_GRAVITY           ,
+    /** clamp control to specified range         */
+    mjDSBL_CLAMPCTRL         ,
+    /** warmstart constraint solver              */
+    mjDSBL_WARMSTART         ,
+    /** remove collisions with parent body       */
+    mjDSBL_FILTERPARENT      ,
+    /** apply actuation forces                   */
+    mjDSBL_ACTUATION         ,
+    /** integrator safety: make ref[0]>=2*timestep */
+    mjDSBL_REFSAFE           ,
+    /** sensors                                  */
+    mjDSBL_SENSOR            ,
+    /** number of disable flags                  */
+    mjNDISABLE               ,
+}
+/**  enable optional feature bitflags        */
+export enum mjtEnableBit {
+    /** override contact parameters              */
+    mjENBL_OVERRIDE          ,
+    /** energy computation                       */
+    mjENBL_ENERGY            ,
+    /** record solver statistics                 */
+    mjENBL_FWDINV            ,
+    /** add noise to sensor data                 */
+    mjENBL_SENSORNOISE       ,
+    /** multi-point convex collision detection   */
+    mjENBL_MULTICCD          ,
+    /** number of enable flags                   */
+    mjNENABLE                ,
+}
+/**  type of degree of freedom               */
+export enum mjtJoint {
+    /** global position and orientation (quat)       (7) */
+    mjJNT_FREE               ,
+    /** orientation (quat) relative to parent        (4) */
+    mjJNT_BALL               ,
+    /** sliding distance along body-fixed axis       (1) */
+    mjJNT_SLIDE              ,
+    /** rotation angle (rad) around body-fixed axis  (1) */
+    mjJNT_HINGE              ,
+}
+/**  type of geometric shape                 */
+export enum mjtGeom {
+    /** plane                                    */
+    mjGEOM_PLANE             ,
+    /** height field                             */
+    mjGEOM_HFIELD            ,
+    /** sphere                                   */
+    mjGEOM_SPHERE            ,
+    /** capsule                                  */
+    mjGEOM_CAPSULE           ,
+    /** ellipsoid                                */
+    mjGEOM_ELLIPSOID         ,
+    /** cylinder                                 */
+    mjGEOM_CYLINDER          ,
+    /** box                                      */
+    mjGEOM_BOX               ,
+    /** mesh                                     */
+    mjGEOM_MESH              ,
+    /** number of regular geom types             */
+    mjNGEOMTYPES             ,
+    /** arrow                                    */
+    mjGEOM_ARROW             ,
+    /** arrow without wedges                     */
+    mjGEOM_ARROW1            ,
+    /** arrow in both directions                 */
+    mjGEOM_ARROW2            ,
+    /** line                                     */
+    mjGEOM_LINE              ,
+    /** skin                                     */
+    mjGEOM_SKIN              ,
+    /** text label                               */
+    mjGEOM_LABEL             ,
+    /** missing geom type                        */
+    mjGEOM_NONE              ,
+}
+/**  tracking mode for camera and light      */
+export enum mjtCamLight {
+    /** pos and rot fixed in body                */
+    mjCAMLIGHT_FIXED         ,
+    /** pos tracks body, rot fixed in global     */
+    mjCAMLIGHT_TRACK         ,
+    /** pos tracks subtree com, rot fixed in body */
+    mjCAMLIGHT_TRACKCOM      ,
+    /** pos fixed in body, rot tracks target body */
+    mjCAMLIGHT_TARGETBODY    ,
+    /** pos fixed in body, rot tracks target subtree com */
+    mjCAMLIGHT_TARGETBODYCOM ,
+}
+/**  type of texture                         */
+export enum mjtTexture {
+    /** 2d texture, suitable for planes and hfields */
+    mjTEXTURE_2D             ,
+    /** cube texture, suitable for all other geom types */
+    mjTEXTURE_CUBE           ,
+    /** cube texture used as skybox              */
+    mjTEXTURE_SKYBOX         ,
+}
+/**  integrator mode                         */
+export enum mjtIntegrator {
+    /** semi-implicit Euler                      */
+    mjINT_EULER              ,
+    /** 4th-order Runge Kutta                    */
+    mjINT_RK4                ,
+    /** implicit in velocity                     */
+    mjINT_IMPLICIT           ,
+}
+/**  collision mode for selecting geom pairs */
+export enum mjtCollision {
+    /** test precomputed and dynamic pairs       */
+    mjCOL_ALL                ,
+    /** test predefined pairs only               */
+    mjCOL_PAIR               ,
+    /** test dynamic pairs only                  */
+    mjCOL_DYNAMIC            ,
+}
+/**  type of friction cone                   */
+export enum mjtCone {
+    /** pyramidal                                */
+    mjCONE_PYRAMIDAL         ,
+    /** elliptic                                 */
+    mjCONE_ELLIPTIC          ,
+}
+/**  type of constraint Jacobian             */
+export enum mjtJacobian {
+    /** dense                                    */
+    mjJAC_DENSE              ,
+    /** sparse                                   */
+    mjJAC_SPARSE             ,
+    /** dense if nv<60, sparse otherwise         */
+    mjJAC_AUTO               ,
+}
+/**  constraint solver algorithm             */
+export enum mjtSolver {
+    /** PGS    (dual)                            */
+    mjSOL_PGS                ,
+    /** CG     (primal)                          */
+    mjSOL_CG                 ,
+    /** Newton (primal)                          */
+    mjSOL_NEWTON             ,
+}
+/**  type of equality constraint             */
+export enum mjtEq {
+    /** connect two bodies at a point (ball joint) */
+    mjEQ_CONNECT             ,
+    /** fix relative position and orientation of two bodies */
+    mjEQ_WELD                ,
+    /** couple the values of two scalar joints with cubic */
+    mjEQ_JOINT               ,
+    /** couple the lengths of two tendons with cubic */
+    mjEQ_TENDON              ,
+    /** unsupported, will cause an error if used */
+    mjEQ_DISTANCE            ,
+}
+/**  type of tendon wrap object              */
+export enum mjtWrap {
+    /** null object                              */
+    mjWRAP_NONE              ,
+    /** constant moment arm                      */
+    mjWRAP_JOINT             ,
+    /** pulley used to split tendon              */
+    mjWRAP_PULLEY            ,
+    /** pass through site                        */
+    mjWRAP_SITE              ,
+    /** wrap around sphere                       */
+    mjWRAP_SPHERE            ,
+    /** wrap around (infinite) cylinder          */
+    mjWRAP_CYLINDER          ,
+}
+/**  type of actuator transmission           */
+export enum mjtTrn {
+    /** force on joint                           */
+    mjTRN_JOINT              ,
+    /** force on joint, expressed in parent frame */
+    mjTRN_JOINTINPARENT      ,
+    /** force via slider-crank linkage           */
+    mjTRN_SLIDERCRANK        ,
+    /** force on tendon                          */
+    mjTRN_TENDON             ,
+    /** force on site                            */
+    mjTRN_SITE               ,
+    /** adhesion force on a body's geoms         */
+    mjTRN_BODY               ,
+    /** undefined transmission type              */
+    mjTRN_UNDEFINED          ,
+}
+/**  type of actuator dynamics               */
+export enum mjtDyn {
+    /** no internal dynamics; ctrl specifies force */
+    mjDYN_NONE               ,
+    /** integrator: da/dt = u                    */
+    mjDYN_INTEGRATOR         ,
+    /** linear filter: da/dt = (u-a) / tau       */
+    mjDYN_FILTER             ,
+    /** piece-wise linear filter with two time constants */
+    mjDYN_MUSCLE             ,
+    /** user-defined dynamics type               */
+    mjDYN_USER               ,
+}
+/**  type of actuator gain                   */
+export enum mjtGain {
+    /** fixed gain                               */
+    mjGAIN_FIXED             ,
+    /** const + kp*length + kv*velocity          */
+    mjGAIN_AFFINE            ,
+    /** muscle FLV curve computed by mju_muscleGain() */
+    mjGAIN_MUSCLE            ,
+    /** user-defined gain type                   */
+    mjGAIN_USER              ,
+}
+/**  type of actuator bias                   */
+export enum mjtBias {
+    /** no bias                                  */
+    mjBIAS_NONE              ,
+    /** const + kp*length + kv*velocity          */
+    mjBIAS_AFFINE            ,
+    /** muscle passive force computed by mju_muscleBias() */
+    mjBIAS_MUSCLE            ,
+    /** user-defined bias type                   */
+    mjBIAS_USER              ,
+}
+/**  type of MujoCo object                   */
+export enum mjtObj {
+    /** unknown object type                      */
+    mjOBJ_UNKNOWN            ,
+    /** body                                     */
+    mjOBJ_BODY               ,
+    /** body, used to access regular frame instead of i-frame */
+    mjOBJ_XBODY              ,
+    /** joint                                    */
+    mjOBJ_JOINT              ,
+    /** dof                                      */
+    mjOBJ_DOF                ,
+    /** geom                                     */
+    mjOBJ_GEOM               ,
+    /** site                                     */
+    mjOBJ_SITE               ,
+    /** camera                                   */
+    mjOBJ_CAMERA             ,
+    /** light                                    */
+    mjOBJ_LIGHT              ,
+    /** mesh                                     */
+    mjOBJ_MESH               ,
+    /** skin                                     */
+    mjOBJ_SKIN               ,
+    /** heightfield                              */
+    mjOBJ_HFIELD             ,
+    /** texture                                  */
+    mjOBJ_TEXTURE            ,
+    /** material for rendering                   */
+    mjOBJ_MATERIAL           ,
+    /** geom pair to include                     */
+    mjOBJ_PAIR               ,
+    /** body pair to exclude                     */
+    mjOBJ_EXCLUDE            ,
+    /** equality constraint                      */
+    mjOBJ_EQUALITY           ,
+    /** tendon                                   */
+    mjOBJ_TENDON             ,
+    /** actuator                                 */
+    mjOBJ_ACTUATOR           ,
+    /** sensor                                   */
+    mjOBJ_SENSOR             ,
+    /** numeric                                  */
+    mjOBJ_NUMERIC            ,
+    /** text                                     */
+    mjOBJ_TEXT               ,
+    /** tuple                                    */
+    mjOBJ_TUPLE              ,
+    /** keyframe                                 */
+    mjOBJ_KEY                ,
+    /** plugin instance                          */
+    mjOBJ_PLUGIN             ,
+}
+/**  type of constraint                      */
+export enum mjtConstraint {
+    /** equality constraint                      */
+    mjCNSTR_EQUALITY         ,
+    /** dof friction                             */
+    mjCNSTR_FRICTION_DOF     ,
+    /** tendon friction                          */
+    mjCNSTR_FRICTION_TENDON  ,
+    /** joint limit                              */
+    mjCNSTR_LIMIT_JOINT      ,
+    /** tendon limit                             */
+    mjCNSTR_LIMIT_TENDON     ,
+    /** frictionless contact                     */
+    mjCNSTR_CONTACT_FRICTIONLESS,
+    /** frictional contact, pyramidal friction cone */
+    mjCNSTR_CONTACT_PYRAMIDAL,
+    /** frictional contact, elliptic friction cone */
+    mjCNSTR_CONTACT_ELLIPTIC ,
+}
+/**  constraint state                        */
+export enum mjtConstraintState {
+    /** constraint satisfied, zero cost (limit, contact) */
+    mjCNSTRSTATE_SATISFIED   ,
+    /** quadratic cost (equality, friction, limit, contact) */
+    mjCNSTRSTATE_QUADRATIC   ,
+    /** linear cost, negative side (friction)    */
+    mjCNSTRSTATE_LINEARNEG   ,
+    /** linear cost, positive side (friction)    */
+    mjCNSTRSTATE_LINEARPOS   ,
+    /** squared distance to cone cost (elliptic contact) */
+    mjCNSTRSTATE_CONE        ,
+}
+/**  type of sensor                          */
+export enum mjtSensor {
+    /** scalar contact normal forces summed over sensor zone */
+    mjSENS_TOUCH             ,
+    /** 3D linear acceleration, in local frame   */
+    mjSENS_ACCELEROMETER     ,
+    /** 3D linear velocity, in local frame       */
+    mjSENS_VELOCIMETER       ,
+    /** 3D angular velocity, in local frame      */
+    mjSENS_GYRO              ,
+    /** 3D force between site's body and its parent body */
+    mjSENS_FORCE             ,
+    /** 3D torque between site's body and its parent body */
+    mjSENS_TORQUE            ,
+    /** 3D magnetometer                          */
+    mjSENS_MAGNETOMETER      ,
+    /** scalar distance to nearest geom or site along z-axis */
+    mjSENS_RANGEFINDER       ,
+    /** scalar joint position (hinge and slide only) */
+    mjSENS_JOINTPOS          ,
+    /** scalar joint velocity (hinge and slide only) */
+    mjSENS_JOINTVEL          ,
+    /** scalar tendon position                   */
+    mjSENS_TENDONPOS         ,
+    /** scalar tendon velocity                   */
+    mjSENS_TENDONVEL         ,
+    /** scalar actuator position                 */
+    mjSENS_ACTUATORPOS       ,
+    /** scalar actuator velocity                 */
+    mjSENS_ACTUATORVEL       ,
+    /** scalar actuator force                    */
+    mjSENS_ACTUATORFRC       ,
+    /** 4D ball joint quaternion                 */
+    mjSENS_BALLQUAT          ,
+    /** 3D ball joint angular velocity           */
+    mjSENS_BALLANGVEL        ,
+    /** joint limit distance-margin              */
+    mjSENS_JOINTLIMITPOS     ,
+    /** joint limit velocity                     */
+    mjSENS_JOINTLIMITVEL     ,
+    /** joint limit force                        */
+    mjSENS_JOINTLIMITFRC     ,
+    /** tendon limit distance-margin             */
+    mjSENS_TENDONLIMITPOS    ,
+    /** tendon limit velocity                    */
+    mjSENS_TENDONLIMITVEL    ,
+    /** tendon limit force                       */
+    mjSENS_TENDONLIMITFRC    ,
+    /** 3D position                              */
+    mjSENS_FRAMEPOS          ,
+    /** 4D unit quaternion orientation           */
+    mjSENS_FRAMEQUAT         ,
+    /** 3D unit vector: x-axis of object's frame */
+    mjSENS_FRAMEXAXIS        ,
+    /** 3D unit vector: y-axis of object's frame */
+    mjSENS_FRAMEYAXIS        ,
+    /** 3D unit vector: z-axis of object's frame */
+    mjSENS_FRAMEZAXIS        ,
+    /** 3D linear velocity                       */
+    mjSENS_FRAMELINVEL       ,
+    /** 3D angular velocity                      */
+    mjSENS_FRAMEANGVEL       ,
+    /** 3D linear acceleration                   */
+    mjSENS_FRAMELINACC       ,
+    /** 3D angular acceleration                  */
+    mjSENS_FRAMEANGACC       ,
+    /** 3D center of mass of subtree             */
+    mjSENS_SUBTREECOM        ,
+    /** 3D linear velocity of subtree            */
+    mjSENS_SUBTREELINVEL     ,
+    /** 3D angular momentum of subtree           */
+    mjSENS_SUBTREEANGMOM     ,
+    /** simulation time                          */
+    mjSENS_CLOCK             ,
+    /** plugin-controlled                        */
+    mjSENS_PLUGIN            ,
+    /** sensor data provided by mjcb_sensor callback */
+    mjSENS_USER              ,
+}
+/**  computation stage                       */
+export enum mjtStage {
+    /** no computations                          */
+    mjSTAGE_NONE             ,
+    /** position-dependent computations          */
+    mjSTAGE_POS              ,
+    /** velocity-dependent computations          */
+    mjSTAGE_VEL              ,
+    /** acceleration/force-dependent computations */
+    mjSTAGE_ACC              ,
+}
+/**  data type for sensors                   */
+export enum mjtDataType {
+    /** real values, no constraints              */
+    mjDATATYPE_REAL          ,
+    /** positive values; 0 or negative: inactive */
+    mjDATATYPE_POSITIVE      ,
+    /** 3D unit vector                           */
+    mjDATATYPE_AXIS          ,
+    /** unit quaternion                          */
+    mjDATATYPE_QUATERNION    ,
+}
+/**  mode for actuator length range computation */
+export enum mjtLRMode {
+    /** do not process any actuators             */
+    mjLRMODE_NONE            ,
+    /** process muscle actuators                 */
+    mjLRMODE_MUSCLE          ,
+    /** process muscle and user actuators        */
+    mjLRMODE_MUSCLEUSER      ,
+    /** process all actuators                    */
+    mjLRMODE_ALL             ,
+}
 
 export interface Model {
+  new (filename : string) : Model;
   load_from_xml(str: string): Model;
+  /** Retrive various parameters of the current simulation */
+  getOptions(): any;
   // MODEL_INTERFACE
   /** number of generalized coordinates = dim(qpos)*/
   nq                    ():       number;
@@ -447,6 +885,8 @@ export interface Model {
   body_invweight0       (): Float64Array;
   /** antigravity force, units of body weight  (nbody x 1)*/
   body_gravcomp         (): Float64Array;
+  /** user data                                (nbody x nuser_body)*/
+  body_user             (): Float64Array;
   /** plugin instance id (-1 if not in use)    (nbody x 1)*/
   body_plugin           ():   Int32Array;
   /** type of joint (mjtJoint)                 (njnt x 1)*/
@@ -475,6 +915,8 @@ export interface Model {
   jnt_range             (): Float64Array;
   /** min distance for limit detection         (njnt x 1)*/
   jnt_margin            (): Float64Array;
+  /** user data                                (njnt x nuser_jnt)*/
+  jnt_user              (): Float64Array;
   /** id of dof's body                         (nv x 1)*/
   dof_bodyid            ():   Int32Array;
   /** id of dof's joint                        (nv x 1)*/
@@ -541,6 +983,8 @@ export interface Model {
   geom_gap              (): Float64Array;
   /** fluid interaction parameters             (ngeom x mjNFLUID)*/
   geom_fluid            (): Float64Array;
+  /** user data                                (ngeom x nuser_geom)*/
+  geom_user             (): Float64Array;
   /** rgba when material is omitted            (ngeom x 4)*/
   geom_rgba             (): Float32Array;
   /** geom type for rendering (mjtGeom)        (nsite x 1)*/
@@ -559,6 +1003,8 @@ export interface Model {
   site_pos              (): Float64Array;
   /** local orientation offset rel. to body    (nsite x 4)*/
   site_quat             (): Float64Array;
+  /** user data                                (nsite x nuser_site)*/
+  site_user             (): Float64Array;
   /** rgba when material is omitted            (nsite x 4)*/
   site_rgba             (): Float32Array;
   /** camera tracking mode (mjtCamLight)       (ncam x 1)*/
@@ -581,6 +1027,8 @@ export interface Model {
   cam_fovy              (): Float64Array;
   /** inter-pupilary distance                  (ncam x 1)*/
   cam_ipd               (): Float64Array;
+  /** user data                                (ncam x nuser_cam)*/
+  cam_user              (): Float64Array;
   /** light tracking mode (mjtCamLight)        (nlight x 1)*/
   light_mode            ():   Int32Array;
   /** id of light's body                       (nlight x 1)*/
@@ -785,6 +1233,8 @@ export interface Model {
   tendon_length0        (): Float64Array;
   /** inv. weight in qpos0                     (ntendon x 1)*/
   tendon_invweight0     (): Float64Array;
+  /** user data                                (ntendon x nuser_tendon)*/
+  tendon_user           (): Float64Array;
   /** rgba when material is omitted            (ntendon x 4)*/
   tendon_rgba           (): Float32Array;
   /** wrap object type (mjtWrap)               (nwrap x 1)*/
@@ -837,6 +1287,8 @@ export interface Model {
   actuator_length0      (): Float64Array;
   /** feasible actuator length range           (nu x 2)*/
   actuator_lengthrange  (): Float64Array;
+  /** user data                                (nu x nuser_actuator)*/
+  actuator_user         (): Float64Array;
   /** plugin instance id; -1: not a plugin     (nu x 1)*/
   actuator_plugin       ():   Int32Array;
   /** sensor type (mjtSensor)                  (nsensor x 1)*/
@@ -861,6 +1313,8 @@ export interface Model {
   sensor_cutoff         (): Float64Array;
   /** noise standard deviation                 (nsensor x 1)*/
   sensor_noise          (): Float64Array;
+  /** user data                                (nsensor x nuser_sensor)*/
+  sensor_user           (): Float64Array;
   /** plugin instance id; -1: not a plugin     (nsensor x 1)*/
   sensor_plugin         ():   Int32Array;
   /** plugin instance id (-1 if not in use)    (nbody x 1)*/
@@ -897,6 +1351,18 @@ export interface Model {
   tuple_objprm          (): Float64Array;
   /** key time                                 (nkey x 1)*/
   key_time              (): Float64Array;
+  /** key position                             (nkey x nq)*/
+  key_qpos              (): Float64Array;
+  /** key velocity                             (nkey x nv)*/
+  key_qvel              (): Float64Array;
+  /** key activation                           (nkey x na)*/
+  key_act               (): Float64Array;
+  /** key mocap position                       (nkey x 3*nmocap)*/
+  key_mpos              (): Float64Array;
+  /** key mocap quaternion                     (nkey x 4*nmocap)*/
+  key_mquat             (): Float64Array;
+  /** key control                              (nkey x nu)*/
+  key_ctrl              (): Float64Array;
   /** body name pointers                       (nbody x 1)*/
   name_bodyadr          ():   Int32Array;
   /** joint name pointers                      (njnt x 1)*/
@@ -946,13 +1412,22 @@ export interface Model {
 }
 
 export interface State {
+  new (model : Model) : State;
 }
 
 export interface Simulation {
+  new (model : Model, state : State) : Simulation;
   state() : State;
   model() : Model;
-  step(): void;
-  applyForce (fx:number, fy:number, fz:number, tx:number, ty:number, tz:number, px:number, py:number, pz:number, body_id:number) : void;
+  /** Apply cartesian force and torque (outside xfrc_applied mechanism) */
+  applyForce(fx: number, fy: number, fz: number, tx: number, ty: number, tz: number, px: number, py: number, pz: number, body_id: number): void;
+  
+  /** sets perturb pos,quat in d->mocap when selected body is mocap, and in d->qpos otherwise
+   * d->qpos written only if flg_paused and subtree root for selected body has free joint */
+  applyPose(bodyID: number,
+            refPosX : number, refPosY : number, refPosZ : number,
+            refQuat1: number, refQuat2: number, refQuat3: number, refQuat4: number,
+            flg_paused: number): void;
   // DATA_INTERFACE
   /** position                                 (nq x 1)*/
   qpos                  (): Float64Array;
@@ -1030,14 +1505,20 @@ export interface Simulation {
   ten_J_rownnz          ():   Int32Array;
   /** row start address in colind array        (ntendon x 1)*/
   ten_J_rowadr          ():   Int32Array;
+  /** column indices in sparse Jacobian        (ntendon x nv)*/
+  ten_J_colind          ():   Int32Array;
   /** tendon lengths                           (ntendon x 1)*/
   ten_length            (): Float64Array;
+  /** tendon Jacobian                          (ntendon x nv)*/
+  ten_J                 (): Float64Array;
   /** geom id; -1: site; -2: pulley            (nwrap*2 x 1)*/
   wrap_obj              ():   Int32Array;
   /** Cartesian 3D points in all path          (nwrap*2 x 3)*/
   wrap_xpos             (): Float64Array;
   /** actuator lengths                         (nu x 1)*/
   actuator_length       (): Float64Array;
+  /** actuator moments                         (nu x nv)*/
+  actuator_moment       (): Float64Array;
   /** com-based composite inertia and mass     (nbody x 10)*/
   crb                   (): Float64Array;
   /** total inertia (sparse)                   (nM x 1)*/
@@ -1096,6 +1577,282 @@ export interface Simulation {
   cfrc_int              (): Float64Array;
   /** com-based external force on body         (nbody x 6)*/
   cfrc_ext              (): Float64Array;
+  /** Free last XML model if loaded. Called internally at each load.*/
+  freeLastXML           (): void;
+  /** Advance simulation, use control callback to obtain external force and control.*/
+  step                  (): void;
+  /** Advance simulation in two steps: before external force and control is set by user.*/
+  step1                 (): void;
+  /** Advance simulation in two steps: after external force and control is set by user.*/
+  step2                 (): void;
+  /** Forward dynamics: same as mj_step but do not integrate in time.*/
+  forward               (): void;
+  /** Inverse dynamics: qacc must be set before calling.*/
+  inverse               (): void;
+  /** Forward dynamics with skip; skipstage is mjtStage.*/
+  forwardSkip           (skipstage : number, skipsensor : number): void;
+  /** Inverse dynamics with skip; skipstage is mjtStage.*/
+  inverseSkip           (skipstage : number, skipsensor : number): void;
+  /** Set solver parameters to default values.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  defaultSolRefImp      (solrefByteOffset : number, solimpByteOffset : number): void;
+  /** Return size of buffer needed to hold model.*/
+  sizeModel             (): number;
+  /** Reset data to defaults.*/
+  resetData             (): void;
+  /** Reset data to defaults, fill everything else with debug_value.*/
+  resetDataDebug        (debug_value : string): void;
+  /** Reset data, set fields from specified keyframe.*/
+  resetDataKeyframe     (key : number): void;
+  /** Free memory allocation in mjData.*/
+  deleteData            (): void;
+  /** Reset all callbacks to NULL pointers (NULL is the default).*/
+  resetCallbacks        (): void;
+  /** Print mjModel to text file, specifying format. float_format must be a valid printf-style format string for a single float value.*/
+  printFormattedModel   (filename : string, float_format : string): void;
+  /** Print model to text file.*/
+  printModel            (filename : string): void;
+  /** Print mjData to text file, specifying format. float_format must be a valid printf-style format string for a single float value*/
+  printFormattedData    (filename : string, float_format : string): void;
+  /** Print data to text file.*/
+  printData             (filename : string): void;
+  /** Print matrix to screen.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _printMat             (matByteOffset : number, nr : number, nc : number): void;
+  /** Run position-dependent computations.*/
+  fwdPosition           (): void;
+  /** Run velocity-dependent computations.*/
+  fwdVelocity           (): void;
+  /** Compute actuator force qfrc_actuator.*/
+  fwdActuation          (): void;
+  /** Add up all non-constraint forces, compute qacc_smooth.*/
+  fwdAcceleration       (): void;
+  /** Run selected constraint solver.*/
+  fwdConstraint         (): void;
+  /** Euler integrator, semi-implicit in velocity.*/
+  Euler                 (): void;
+  /** Runge-Kutta explicit order-N integrator.*/
+  RungeKutta            (N : number): void;
+  /** Run position-dependent computations in inverse dynamics.*/
+  invPosition           (): void;
+  /** Run velocity-dependent computations in inverse dynamics.*/
+  invVelocity           (): void;
+  /** Apply the analytical formula for inverse constraint dynamics.*/
+  invConstraint         (): void;
+  /** Compare forward and inverse dynamics, save results in fwdinv.*/
+  compareFwdInv         (): void;
+  /** Evaluate position-dependent sensors.*/
+  sensorPos             (): void;
+  /** Evaluate velocity-dependent sensors.*/
+  sensorVel             (): void;
+  /** Evaluate acceleration and force-dependent sensors.*/
+  sensorAcc             (): void;
+  /** Evaluate position-dependent energy (potential).*/
+  energyPos             (): void;
+  /** Evaluate velocity-dependent energy (kinetic).*/
+  energyVel             (): void;
+  /** Check qpos, reset if any element is too big or nan.*/
+  checkPos              (): void;
+  /** Check qvel, reset if any element is too big or nan.*/
+  checkVel              (): void;
+  /** Check qacc, reset if any element is too big or nan.*/
+  checkAcc              (): void;
+  /** Run forward kinematics.*/
+  kinematics            (): void;
+  /** Map inertias and motion dofs to global frame centered at CoM.*/
+  comPos                (): void;
+  /** Compute camera and light positions and orientations.*/
+  camlight              (): void;
+  /** Compute tendon lengths, velocities and moment arms.*/
+  tendon                (): void;
+  /** Compute actuator transmission lengths and moments.*/
+  transmission          (): void;
+  /** Run composite rigid body inertia algorithm (CRB).*/
+  crbCalculate          (): void;
+  /** Compute sparse L'*D*L factorizaton of inertia matrix.*/
+  factorM               (): void;
+  /** Solve linear system M * x = y using factorization:  x = inv(L'*D*L)*y[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  solveM                (xByteOffset : number, yByteOffset : number, n : number): void;
+  /** Half of linear solve:  x = sqrt(inv(D))*inv(L')*y[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  solveM2               (xByteOffset : number, yByteOffset : number, n : number): void;
+  /** Compute cvel, cdof_dot.*/
+  comVel                (): void;
+  /** Compute qfrc_passive from spring-dampers, viscosity and density.*/
+  passive               (): void;
+  /** subtree linear velocity and angular momentum*/
+  subtreeVel            (): void;
+  /** RNE: compute M(qpos)*qacc + C(qpos,qvel); flg_acc=0 removes inertial term.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  rne                   (flg_acc : number, resultByteOffset : number): void;
+  /** RNE with complete data: compute cacc, cfrc_ext, cfrc_int.*/
+  rnePostConstraint     (): void;
+  /** Run collision detection.*/
+  collision             (): void;
+  /** Construct constraints.*/
+  makeConstraint        (): void;
+  /** Compute inverse constraint inertia efc_AR.*/
+  projectConstraint     (): void;
+  /** Compute efc_vel, efc_aref.*/
+  referenceConstraint   (): void;
+  /** Determine type of friction cone.*/
+  isPyramidal           (): number;
+  /** Determine type of constraint Jacobian.*/
+  isSparse              (): number;
+  /** Determine type of solver (PGS is dual, CG and Newton are primal).*/
+  isDual                (): number;
+  /** Multiply dense or sparse constraint Jacobian by vector.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  mulJacVec             (resByteOffset : number, vecByteOffset : number): void;
+  /** Multiply dense or sparse constraint Jacobian transpose by vector.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  mulJacTVec            (resByteOffset : number, vecByteOffset : number): void;
+  /** Compute subtree center-of-mass end-effector Jacobian.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  jacSubtreeCom         (jacpByteOffset : number, body : number): void;
+  /** Get id of object with the specified mjtObj type and name, returns -1 if id not found.*/
+  name2id               (type : number, name : string): number;
+  /** Get name of object with the specified mjtObj type and id, returns NULL if name not found.*/
+  id2name               (type : number, id : number): string;
+  /** Convert sparse inertia matrix M into full (i.e. dense) matrix.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  fullM                 (dstByteOffset : number, MByteOffset : number): void;
+  /** Compute velocity by finite-differencing two positions.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  differentiatePos      (qvelByteOffset : number, dt : number, qpos1ByteOffset : number, qpos2ByteOffset : number): void;
+  /** Integrate position with given velocity.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  integratePos          (qposByteOffset : number, qvelByteOffset : number, dt : number): void;
+  /** Normalize all quaternions in qpos-type vector.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  normalizeQuat         (qposByteOffset : number): void;
+  /** Sum all body masses.*/
+  getTotalmass          (): number;
+  /** Return a config attribute value of a plugin instance; NULL: invalid plugin instance ID or attribute name*/
+  getPluginConfig       (plugin_id : number, attrib : string): string;
+  /** Load a dynamic library. The dynamic library is assumed to register one or more plugins.*/
+  loadPluginLibrary     (path : string): void;
+  /** Return version number: 1.0.2 is encoded as 102.*/
+  version               (): number;
+  /** Return the current version of MuJoCo as a null-terminated string.*/
+  versionString         (): string;
+  /** Draw rectangle.*/
+  _rectangle            (viewport : mjrRect, r : number, g : number, b : number, a : number): void;
+  /** Call glFinish.*/
+  _finish               (): void;
+  /** Call glGetError and return result.*/
+  _getError             (): number;
+  /** Get builtin UI theme spacing (ind: 0-1).*/
+  i_themeSpacing        (ind : number): mjuiThemeSpacing;
+  /** Get builtin UI theme color (ind: 0-3).*/
+  i_themeColor          (ind : number): mjuiThemeColor;
+  /** Main error function; does not return to caller.*/
+  _error                (msg : string): void;
+  /** Deprecated: use mju_error.*/
+  _error_i              (msg : string, i : number): void;
+  /** Deprecated: use mju_error.*/
+  _error_s              (msg : string, text : string): void;
+  /** Main warning function; returns to caller.*/
+  _warning              (msg : string): void;
+  /** Deprecated: use mju_warning.*/
+  _warning_i            (msg : string, i : number): void;
+  /** Deprecated: use mju_warning.*/
+  _warning_s            (msg : string, text : string): void;
+  /** Clear user error and memory handlers.*/
+  _clearHandlers        (): void;
+  /** High-level warning function: count warnings in mjData, print only the first.*/
+  warning               (warning : number, info : number): void;
+  /** Write [datetime, type: message] to MUJOCO_LOG.TXT.*/
+  _writeLog             (type : string, msg : string): void;
+  /** Return 1 (for backward compatibility).*/
+  activate              (filename : string): number;
+  /** Do nothing (for backward compatibility).*/
+  deactivate            (): void;
+  /** Set res = 0.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _zero                 (resByteOffset : number, n : number): void;
+  /** Set res = val.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _fill                 (resByteOffset : number, val : number, n : number): void;
+  /** Set res = vec.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _copy                 (resByteOffset : number, dataByteOffset : number, n : number): void;
+  /** Return sum(vec).[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _sum                  (vecByteOffset : number, n : number): number;
+  /** Return L1 norm: sum(abs(vec)).[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _L1                   (vecByteOffset : number, n : number): number;
+  /** Set res = vec*scl.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _scl                  (resByteOffset : number, vecByteOffset : number, scl : number, n : number): void;
+  /** Set res = vec1 + vec2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _add                  (resByteOffset : number, vec1ByteOffset : number, vec2ByteOffset : number, n : number): void;
+  /** Set res = vec1 - vec2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _sub                  (resByteOffset : number, vec1ByteOffset : number, vec2ByteOffset : number, n : number): void;
+  /** Set res = res + vec.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _addTo                (resByteOffset : number, vecByteOffset : number, n : number): void;
+  /** Set res = res - vec.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _subFrom              (resByteOffset : number, vecByteOffset : number, n : number): void;
+  /** Set res = res + vec*scl.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _addToScl             (resByteOffset : number, vecByteOffset : number, scl : number, n : number): void;
+  /** Set res = vec1 + vec2*scl.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _addScl               (resByteOffset : number, vec1ByteOffset : number, vec2ByteOffset : number, scl : number, n : number): void;
+  /** Normalize vector, return length before normalization.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _normalize            (resByteOffset : number, n : number): number;
+  /** Return vector length (without normalizing vector).[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _norm                 (resByteOffset : number, n : number): number;
+  /** Return dot-product of vec1 and vec2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _dot                  (vec1ByteOffset : number, vec2ByteOffset : number, n : number): number;
+  /** Multiply matrix and vector: res = mat * vec.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulMatVec            (resByteOffset : number, matByteOffset : number, vecByteOffset : number, nr : number, nc : number): void;
+  /** Multiply transposed matrix and vector: res = mat' * vec.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulMatTVec           (resByteOffset : number, matByteOffset : number, vecByteOffset : number, nr : number, nc : number): void;
+  /** Multiply square matrix with vectors on both sides: returns vec1' * mat * vec2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulVecMatVec         (vec1ByteOffset : number, matByteOffset : number, vec2ByteOffset : number, n : number): number;
+  /** Transpose matrix: res = mat'.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _transpose            (resByteOffset : number, matByteOffset : number, nr : number, nc : number): void;
+  /** Symmetrize square matrix res = (mat + mat')/2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _symmetrize           (resByteOffset : number, matByteOffset : number, n : number): void;
+  /** Set mat to the identity matrix.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _eye                  (matByteOffset : number, n : number): void;
+  /** Multiply matrices: res = mat1 * mat2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulMatMat            (resByteOffset : number, mat1ByteOffset : number, mat2ByteOffset : number, r1 : number, c1 : number, c2 : number): void;
+  /** Multiply matrices, second argument transposed: res = mat1 * mat2'.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulMatMatT           (resByteOffset : number, mat1ByteOffset : number, mat2ByteOffset : number, r1 : number, c1 : number, r2 : number): void;
+  /** Multiply matrices, first argument transposed: res = mat1' * mat2.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _mulMatTMat           (resByteOffset : number, mat1ByteOffset : number, mat2ByteOffset : number, r1 : number, c1 : number, c2 : number): void;
+  /** Set res = mat' * diag * mat if diag is not NULL, and res = mat' * mat otherwise.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _sqrMatTD             (resByteOffset : number, matByteOffset : number, diagByteOffset : number, nr : number, nc : number): void;
+  /** Cholesky decomposition: mat = L*L'; return rank, decomposition performed in-place into mat.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _cholFactor           (matByteOffset : number, n : number, mindiag : number): number;
+  /** Solve mat * res = vec, where mat is Cholesky-factorized[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _cholSolve            (resByteOffset : number, matByteOffset : number, vecByteOffset : number, n : number): void;
+  /** Cholesky rank-one update: L*L' +/- x*x'; return rank.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _cholUpdate           (matByteOffset : number, xByteOffset : number, n : number, flg_plus : number): number;
+  /** Convert contact force to pyramid representation.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _encodePyramid        (pyramidByteOffset : number, forceByteOffset : number, muByteOffset : number, dim : number): void;
+  /** Convert pyramid representation to contact force.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _decodePyramid        (forceByteOffset : number, pyramidByteOffset : number, muByteOffset : number, dim : number): void;
+  /** Integrate spring-damper analytically, return pos(dt).*/
+  _springDamper         (pos0 : number, vel0 : number, Kp : number, Kv : number, dt : number): number;
+  /** Return min(a,b) with single evaluation of a and b.*/
+  _min                  (a : number, b : number): number;
+  /** Return max(a,b) with single evaluation of a and b.*/
+  _max                  (a : number, b : number): number;
+  /** Clip x to the range [min, max].*/
+  _clip                 (x : number, min : number, max : number): number;
+  /** Return sign of x: +1, -1 or 0.*/
+  _sign                 (x : number): number;
+  /** Round x to nearest integer.*/
+  _round                (x : number): number;
+  /** Convert type id (mjtObj) to type name.*/
+  _type2Str             (type : number): string;
+  /** Convert type name to type id (mjtObj).*/
+  _str2Type             (str : string): number;
+  /** Return human readable number of bytes using standard letter suffix.*/
+  _writeNumBytes        (nbytes : number): string;
+  /** Construct a warning message given the warning type and info.*/
+  _warningText          (warning : number, info : number): string;
+  /** Return 1 if nan or abs(x)>mjMAXVAL, 0 otherwise. Used by check functions.*/
+  _isBad                (x : number): number;
+  /** Return 1 if all elements are 0.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _isZero               (vecByteOffset : number, n : number): number;
+  /** Standard normal random number generator (optional second number).[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _standardNormal       (num2ByteOffset : number): number;
+  /** Insertion sort, resulting list is in increasing order.[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _insertionSort        (listByteOffset : number, n : number): void;
+  /** Generate Halton sequence.*/
+  _Halton               (index : number, base : number): number;
+  /** Sigmoid function over 0<=x<=1 constructed from half-quadratics.*/
+  _sigmoid              (x : number): number;
+  /** Finite differenced transition matrices (control theory notation)   d(x_next) = A*dx + B*du   d(sensor) = C*dx + D*du   required output matrix dimensions:      A: (2*nv+na x 2*nv+na)      B: (2*nv+na x nu)      D: (nsensordata x 2*nv+na)      C: (nsensordata x nu)[Pass the TypedArray.byteOffset in place of the TypedArray!]*/
+  _transitionFD         (eps : number, centered : mjtByte, AByteOffset : number, BByteOffset : number, CByteOffset : number, DByteOffset : number): void;
+  /** Return the number of globally registered plugins.*/
+  _pluginCount          (): number;
 }
 
 export interface mujoco extends EmscriptenModule {

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Vector3 } from 'three';
 
-export class Grabber {
+export class DragStateManager {
     constructor(scene, renderer, camera, container, controls) {
         this.scene = scene;
         this.renderer = renderer;
@@ -26,6 +26,9 @@ export class Grabber {
         this.arrow.cone.material.opacity = 0.5;
         this.arrow.visible = false;
 
+        this.previouslySelected = null;
+        this.higlightColor = 0xff0000;  // 0x777777
+
         this.localHit = new Vector3();
         this.worldHit = new Vector3();
         this.currentWorld = new Vector3();
@@ -34,6 +37,7 @@ export class Grabber {
         document.addEventListener( 'pointermove', this.onPointer.bind(this), true );
         document.addEventListener( 'pointerup'  , this.onPointer.bind(this), true );
         document.addEventListener( 'pointerout' , this.onPointer.bind(this), true );
+        container.addEventListener( 'dblclick', this.onPointer.bind(this), false );
     }
     updateRaycaster(x, y) {
         var rect = this.renderer.domElement.getBoundingClientRect();
@@ -98,7 +102,6 @@ export class Grabber {
         this.mouseDown = false;
     }
     onPointer(evt) {
-        //evt.preventDefault();
         if (evt.type == "pointerdown") {
             this.start(evt.clientX, evt.clientY);
             this.mouseDown = true;
@@ -106,6 +109,27 @@ export class Grabber {
             if (this.active) { this.move(evt.clientX, evt.clientY); }
         } else if (evt.type == "pointerup" /*|| evt.type == "pointerout"*/) {
             this.end(evt);
+        }
+        if (evt.type == "dblclick") {
+            this.start(evt.clientX, evt.clientY);
+            this.doubleClick = true;
+            if (this.physicsObject) {
+                if (this.physicsObject == this.previouslySelected) {
+                    this.physicsObject.material.emissive.setHex(0x000000);
+                    this.previouslySelected = null;
+                } else {
+                    if (this.previouslySelected) {
+                        this.previouslySelected.material.emissive.setHex(0x000000);
+                    }
+                    this.physicsObject.material.emissive.setHex(this.higlightColor);
+                    this.previouslySelected = this.physicsObject;
+                }
+            } else {
+                if (this.previouslySelected) {
+                    this.previouslySelected.material.emissive.setHex(0x000000);
+                    this.previouslySelected = null;
+                }
+            }
         }
     }
 }
