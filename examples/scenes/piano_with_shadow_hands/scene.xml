@@ -648,7 +648,7 @@
       <camera name="piano/topdown" class="piano/" fovy="33.9496196739872" pos="0 0 1" quat="1 0 0 1"/>
     </body>
     <body name="lh_shadow_hand/">
-      <body name="lh_shadow_hand/lh_forearm" childclass="lh_shadow_hand/left_hand" pos="0.40000000000000002 -0.14999999999999999 0.1" quat="-1 -1 1 1" gravcomp="1">
+      <body name="lh_shadow_hand/lh_forearm" childclass="lh_shadow_hand/left_hand" pos="0.40000000000000002 -0.14999999999999999 0.13" quat="-1 -1 1 1" gravcomp="1">
         <inertial pos="0 0 0.089999999999999997" mass="3" diaginertia="0.0138 0.0138 0.0074400000000000004"/>
         <geom name="lh_shadow_hand//unnamed_geom_0" class="lh_shadow_hand/plastic_visual" material="lh_shadow_hand/gray" mesh="lh_shadow_hand/forearm_0"/>
         <geom name="lh_shadow_hand//unnamed_geom_1" class="lh_shadow_hand/plastic_visual" mesh="lh_shadow_hand/forearm_1"/>
@@ -844,7 +844,7 @@
       </body>
     </body>
     <body name="rh_shadow_hand/">
-      <body name="rh_shadow_hand/rh_forearm" childclass="rh_shadow_hand/right_hand" pos="0.40000000000000002 0.14999999999999999 0.10" quat="-1 -1 1 1" gravcomp="1">
+      <body name="rh_shadow_hand/rh_forearm" childclass="rh_shadow_hand/right_hand" pos="0.40000000000000002 0.14999999999999999 0.13" quat="-1 -1 1 1" gravcomp="1">
         <inertial pos="0 0 0.089999999999999997" mass="3" diaginertia="0.0138 0.0138 0.0074400000000000004"/>
         <geom name="rh_shadow_hand//unnamed_geom_0" class="rh_shadow_hand/plastic_visual" material="rh_shadow_hand/gray" mesh="rh_shadow_hand/forearm_0"/>
         <geom name="rh_shadow_hand//unnamed_geom_1" class="rh_shadow_hand/plastic_visual" mesh="rh_shadow_hand/forearm_1"/>

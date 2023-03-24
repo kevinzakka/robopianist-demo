@@ -299,7 +299,7 @@ export class RoboPianistDemo {
           for (let i = 0; i < currentCtrl.length; i++) {
             // Play one control frame every 100ms
             currentCtrl[i] = this.pianoControl.data[
-              (currentCtrl.length * Math.floor(this.mujoco_time / 100)) + i];
+              (currentCtrl.length * Math.floor(this.mujoco_time / 50)) + i];
             this.params["Actuator " + i] = currentCtrl[i];
           }
         }
