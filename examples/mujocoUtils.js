@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Reflector  } from './utils/Reflector.js';
-import { MuJoCoDemo } from './main.js';
+import { RoboPianistDemo } from './main.js';
 
 export async function reloadFunc() {
   // Delete the old scene and load the new scene
@@ -13,7 +13,7 @@ export async function reloadFunc() {
   }
 }
 
-/** @param {MuJoCoDemo} parentContext*/
+/** @param {RoboPianistDemo} parentContext*/
 export function setupGUI(parentContext) {
 
   // Make sure we reset the camera when the scene is changed or reloaded.
@@ -257,7 +257,7 @@ export function setupGUI(parentContext) {
 /** Loads a scene for MuJoCo
  * @param {mujoco} mujoco This is a reference to the mujoco namespace object
  * @param {string} filename This is the name of the .xml file in the /working/ directory of the MuJoCo/Emscripten Virtual File System
- * @param {MuJoCoDemo} parent The three.js Scene Object to add the MuJoCo model elements to
+ * @param {RoboPianistDemo} parent The three.js Scene Object to add the MuJoCo model elements to
  */
 export async function loadSceneFromURL(mujoco, filename, parent) {
     // Load in the state from XML.
@@ -279,6 +279,11 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
     mujocoRoot.name = "MuJoCo Root"
     parent.scene.add(mujocoRoot);
 
+    // TODO: Use free camera parameters from MuJoCo
+    parent.camera.position.set(-0.6, 0.7, 0.0);
+    parent.controls.target.set(0, 0.0, 0);
+    parent.controls.update();
+  
     /** @type {Object.<number, THREE.Group>} */
     let bodies = {};
     /** @type {Object.<number, THREE.BufferGeometry>} */
