@@ -22,21 +22,21 @@ export function setupGUI(parentContext) {
   // Make sure we reset the camera when the scene is changed or reloaded.
   parentContext.updateGUICallbacks.length = 0;
   parentContext.updateGUICallbacks.push((model, simulation, params) => {
-    // TODO: Use free camera parameters from MuJoCo
     parentContext.camera.position.set(-0.6, 0.7, 0.0);
     parentContext.controls.target.set(0, 0.0, 0);
-    parentContext.controls.update(); });
+    parentContext.controls.update();
+  });
 
-  // Add scene selection dropdown.
-  let reload = reloadFunc.bind(parentContext);
+  // Add song selection dropdown.
   parentContext.gui.add(parentContext.params, 'song', {
-    "TwinkleTwinkle": "twinkle_twinkle_actions.npy", "AlsoTwinkleTwinkle": "twinkle_twinkle_actions.npy"
+    "Twinkle Twinkle": "twinkle_twinkle_actions.npy",
   }).name('Song').onChange((value) => {
     parentContext.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+value, (loaded) => {
       parentContext.pianoControl = loaded;
       parentContext.controlFrameNumber = 0;
       parentContext.simulation.resetData();
       parentContext.simulation.forward();
+      parentContext.prevActivated.fill(false);
     });
   });
 
