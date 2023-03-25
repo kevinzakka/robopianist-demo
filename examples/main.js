@@ -8,6 +8,7 @@ import { key2note }         from './utils/musicUtils.js';
 import { setupGUI, downloadExampleScenesFolder, loadSceneFromURL, getPosition, getQuaternion, toMujocoPos, standardNormal } from './mujocoUtils.js';
 import   load_mujoco        from '../dist/mujoco_wasm.js';
 
+
 // Load the MuJoCo Module
 const mujoco = await load_mujoco();
 
