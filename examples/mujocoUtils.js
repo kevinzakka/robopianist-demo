@@ -7,11 +7,13 @@ export async function reloadFunc() {
   this.scene.remove(this.scene.getObjectByName("MuJoCo Root"));
   [this.model, this.state, this.simulation, this.bodies, this.lights] =
     await loadSceneFromURL(this.mujoco, this.params.scene, this);
+  // Reset piano key activations.
+  this.prevActivated.fill(false);
+  // Run forward dynamics to update the scene.
   this.simulation.forward();
   for (let i = 0; i < this.updateGUICallbacks.length; i++) {
     this.updateGUICallbacks[i](this.model, this.simulation, this.params);
   }
-  this.prevActivated.fill(false);
 }
 
 /** @param {RoboPianistDemo} parentContext*/
@@ -165,18 +167,6 @@ export function setupGUI(parentContext) {
   actionInnerHTML += 'Play / Pause<br>';
   keyInnerHTML += 'Space<br>';
 
-  // Add reload model button.
-  // Parameters:
-  //  Under "Simulation" folder.
-  //  Name: "Reload".
-  //  When pressed, calls the reload function.
-  //  Can also be triggered by pressing ctrl + L.
-  //simulationFolder.add({reload: () => { reload(); }}, 'reload').name('Reload');
-  //document.addEventListener('keydown', (event) => {
-  //  if (event.ctrlKey && event.code === 'KeyL') { reload();  event.preventDefault(); }});
-  //actionInnerHTML += 'Reload XML<br>';
-  //keyInnerHTML += 'Ctrl L<br>';
-
   // Add reset simulation button.
   // Parameters:
   //  Under "Simulation" folder.
@@ -187,32 +177,25 @@ export function setupGUI(parentContext) {
     parentContext.controlFrameNumber = 0;
     parentContext.simulation.resetData();
     parentContext.simulation.forward();
+
+    // Reset piano key colors.
+    for (let b = 0; b < parentContext.model.nbody(); b++) {
+      if (parentContext.bodies[b]) {
+        if (parentContext.bodies[b].name.indexOf("piano/") < 0) { continue; }
+        if (parentContext.bodies[b].name.indexOf("key") < 0) { continue; }
+        if (parentContext.bodies[b].name.indexOf("white") >= 0) {
+          parentContext.bodies[b].children[0].material.color.setRGB(0.9, 0.9, 0.9);
+        } else {
+          parentContext.bodies[b].children[0].material.color.setRGB(0.1, 0.1, 0.1);
+        }
+      }
+    }
   };
   simulationFolder.add({reset: () => { resetSimulation(); }}, 'reset').name('Reset');
   document.addEventListener('keydown', (event) => {
     if (event.code === 'Backspace') { resetSimulation(); event.preventDefault(); }});
   actionInnerHTML += 'Reset simulation<br>';
   keyInnerHTML += 'Backspace<br>';
-
-  // Add keyframe slider.
-  //let nkeys = parentContext.model.nkey();
-  //let keyframeGUI = simulationFolder.add(parentContext.params, "keyframeNumber", 0, nkeys - 1, 1).name('Load Keyframe').listen();
-  //keyframeGUI.onChange((value) => {
-  //  if (value < parentContext.model.nkey()) {
-  //    parentContext.simulation.qpos().set(parentContext.model.key_qpos().slice(
-  //      value * parentContext.model.nq(), (value + 1) * parentContext.model.nq())); }});
-  //parentContext.updateGUICallbacks.push((model, simulation, params) => {
-  //  let nkeys = parentContext.model.nkey();
-  //  console.log("new model loaded. has " + nkeys + " keyframes.");
-  //  if (nkeys > 0) {
-  //    keyframeGUI.max(nkeys - 1);
-  //    keyframeGUI.domElement.style.opacity = 1.0;
-  //  } else {
-  //    // Disable keyframe slider if no keyframes are available.
-  //    keyframeGUI.max(0);
-  //    keyframeGUI.domElement.style.opacity = 0.5;
-  //  }
-  //});
 
   // Add sliders for ctrlnoiserate and ctrlnoisestd; min = 0, max = 2, step = 0.01.
   simulationFolder.add(parentContext.params, 'ctrlnoiserate', 0.0, 2.0, 0.01).name('Noise rate' );
@@ -248,7 +231,6 @@ export function setupGUI(parentContext) {
   // Can be triggered by pressing ctrl + A.
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.code === 'KeyA') {
-      // TODO: Use free camera parameters from MuJoCo
       parentContext.camera.position.set( -0.6, 0.7, 0.0 );
       parentContext.controls.target.set(0, 0.0, 0);
       parentContext.controls.update();
