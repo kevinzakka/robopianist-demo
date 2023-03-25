@@ -30,6 +30,7 @@ export function setupGUI(parentContext) {
   // Add song selection dropdown.
   parentContext.gui.add(parentContext.params, 'song', {
     "Twinkle Twinkle": "twinkle_twinkle_actions.npy",
+    "Turkish March": "turkish_march_actions.npy",
   }).name('Song').onChange((value) => {
     parentContext.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+value, (loaded) => {
       parentContext.pianoControl = loaded;
