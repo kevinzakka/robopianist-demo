@@ -40,6 +40,7 @@ export function setupGUI(parentContext) {
       parentContext.simulation.resetData();
       parentContext.simulation.forward();
       parentContext.prevActivated.fill(false);
+      parentContext.params.songPaused = false;
     });
   });
 
@@ -145,7 +146,6 @@ export function setupGUI(parentContext) {
   //  When paused, a "pause" text in white is displayed in the top left corner.
   //  Can also be triggered by pressing the spacebar.
   const pauseSimulation = simulationFolder.add(parentContext.params, 'paused').name('Pause Simulation');
-  const pauseSong = simulationFolder.add(parentContext.params, 'songPaused').name('Pause Song');
   pauseSimulation.onChange((value) => {
     if (value) {
       const pausedText = document.createElement('div');
@@ -169,6 +169,17 @@ export function setupGUI(parentContext) {
   });
   actionInnerHTML += 'Play / Pause<br>';
   keyInnerHTML += 'Space<br>';
+
+  const pauseSong = simulationFolder.add(parentContext.params, 'songPaused').name('Pause Song').listen();
+  document.addEventListener('keydown', (event) => {
+    if (event.code === 'KeyP') {
+      parentContext.params.songPaused = !parentContext.params.songPaused;
+      pauseSong.setValue(parentContext.params.songPaused);
+      event.preventDefault();
+    }
+  });
+  actionInnerHTML += 'Play / Pause Song<br>';
+  keyInnerHTML += 'P<br>';
 
   // Add reset simulation button.
   // Parameters:
@@ -235,7 +246,7 @@ export function setupGUI(parentContext) {
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.code === 'KeyA') {
       parentContext.camera.position.set( -0.6, 0.7, 0.0 );
-      parentContext.controls.target.set(0, 0.0, 0);
+      parentContext.controls.target.set(0, 0, 0);
       parentContext.controls.update();
       event.preventDefault();
     }

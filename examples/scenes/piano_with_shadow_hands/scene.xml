@@ -191,11 +191,13 @@
     <mesh name="lh_shadow_hand/th_proximal" class="lh_shadow_hand/left_hand" file="th_proximal-836fc483b89bf08806ab50636ab1fe738a54406e.obj"/>
     <mesh name="lh_shadow_hand/th_middle" class="lh_shadow_hand/left_hand" file="th_middle-c6937ecc6bf6b01a854aaffb71f3beeda05f8ac3.obj"/>
     <mesh name="lh_shadow_hand/th_distal_pst" class="lh_shadow_hand/left_hand" file="th_distal_pst-c003d5be2d6a841babda3d88c51010617a2ba4bb.obj"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .1 .1" rgb2=".2 .2 .2"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance=".2"/>
   </asset>
   <worldbody>
     <light name="//unnamed_light_0" class="/" pos="0 0 1"/>
     <light name="//unnamed_light_1" class="/" directional="false" pos="0.29999999999999999 0 1" dir="0 0 -1"/>
-    <geom name="//unnamed_geom_0" class="/" type="cylinder" contype="0" conaffinity="0" size="0.65000000000000002 0.001" rgba="0.10000000000000001 0.10000000000000001 0.10000000000000001 0.80000000000000004"/>
+    <geom name="floor" size="0 0 .05" type="plane" material="grid" class="/" contype="0" conaffinity="0"/>
     <body name="piano/">
       <body name="piano/base" pos="-0.127 0 0.02">
         <geom name="piano//unnamed_geom_0" class="piano/" type="box" size="0.050000000000000003 0.61049999999999993 0.02" rgba="0.14999999999999999 0.14999999999999999 0.14999999999999999 1"/>

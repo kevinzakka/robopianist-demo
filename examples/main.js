@@ -44,8 +44,8 @@ export class RoboPianistDemo {
     this.camera.position.set( -0.6, 0.7, 0.0 );
     this.scene.add(this.camera);
 
-    this.scene.background = new THREE.Color(0.15, 0.25, 0.35);
-    this.scene.fog = new THREE.Fog(this.scene.background, 15, 25.5 );
+    // this.scene.background = new THREE.Color(0.15, 0.25, 0.35);
+    // this.scene.fog = new THREE.Fog(this.scene.background, 15, 25.5 );
 
     this.ambientLight = new THREE.AmbientLight( 0xffffff, 0.1 );
     this.ambientLight.name = 'AmbientLight';
@@ -217,6 +217,7 @@ export class RoboPianistDemo {
             this.controlFrameNumber = 0;
             this.simulation.resetData();
             this.simulation.forward();
+            this.params.songPaused = true;
           }
           this.controlFrameNumber += 1;
         }
