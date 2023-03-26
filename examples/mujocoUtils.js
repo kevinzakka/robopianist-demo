@@ -31,6 +31,8 @@ export function setupGUI(parentContext) {
   parentContext.gui.add(parentContext.params, 'song', {
     "Twinkle Twinkle": "twinkle_twinkle_actions.npy",
     "Turkish March": "turkish_march_actions.npy",
+    "Fur Elise": "fur_elise_actions.npy",
+    "Piano Sonata No. 16 K545": "k545_actions.npy",
   }).name('Song').onChange((value) => {
     parentContext.npyjs.load("./examples/scenes/piano_with_shadow_hands/"+value, (loaded) => {
       parentContext.pianoControl = loaded;
