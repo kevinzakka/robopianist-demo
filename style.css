@@ -69,14 +69,17 @@ a, button, input, select {
   z-index: 2 !important; /* TODO Solve this in HTML */
 }
 
+/* Ensure lil-gui does not cover info when width becomes too small */
 @media all and ( max-width: 640px ) {
   .lil-gui.root {
     right: auto;
     top: auto;
     max-height: 50%;
     max-width: 80%;
-    bottom: 0;
+    bottom: 40px;
     left: 0;
+    right: 0;
+    margin: auto;
   }
 }
 
@@ -95,16 +98,16 @@ a, button, input, select {
   background: rgba(0,0,0,0.7);
 }
 
-  #overlay button {
-    background: transparent;
-    border: 0;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 4px;
-    color: #ffffff;
-    padding: 12px 18px;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
+#overlay button {
+  background: transparent;
+  border: 0;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 12px 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
 
 #notSupported {
   width: 50%;
