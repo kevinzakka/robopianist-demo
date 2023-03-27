@@ -26,7 +26,7 @@ export class RoboPianistDemo {
     });
 
     // Define Random State Variables
-    this.params = { song: "twinkle_twinkle_actions.npy", paused: false, songPaused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
+    this.params = { song: "turkish_march_actions.npy", paused: false, songPaused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
     this.mujoco_time = 0.0;
     this.bodies  = {}, this.lights = {};
     this.tmpVec  = new THREE.Vector3();
