@@ -18,15 +18,6 @@ export async function reloadFunc() {
 
 /** @param {RoboPianistDemo} parentContext*/
 export function setupGUI(parentContext) {
-
-  // Make sure we reset the camera when the scene is changed or reloaded.
-  parentContext.updateGUICallbacks.length = 0;
-  parentContext.updateGUICallbacks.push((model, simulation, params) => {
-    parentContext.camera.position.set(-0.6, 0.7, 0.0);
-    parentContext.controls.target.set(0, 0.0, 0);
-    parentContext.controls.update();
-  });
-
   // Add song selection dropdown.
   parentContext.gui.add(parentContext.params, 'song', {
     "Twinkle Twinkle": "twinkle_twinkle_actions.npy",
@@ -215,6 +206,8 @@ export function setupGUI(parentContext) {
   simulationFolder.add(parentContext.params, 'ctrlnoiserate', 0.0, 2.0, 0.01).name('Noise rate' );
   simulationFolder.add(parentContext.params, 'ctrlnoisestd' , 0.0, 2.0, 0.01).name('Noise scale');
 
+  simulationFolder.close();
+
   // Add actuator sliders.
   let actuatorFolder = simulationFolder.addFolder("Actuators");
   const addActuators = (model, simulation, params) => {
@@ -245,14 +238,19 @@ export function setupGUI(parentContext) {
   // Can be triggered by pressing ctrl + A.
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.code === 'KeyA') {
-      parentContext.camera.position.set( -0.6, 0.7, 0.0 );
-      parentContext.controls.target.set(0, 0, 0);
+      parentContext.camera.position.set(-0.5, 0.6, -0.85);
+      parentContext.controls.target.set(0.08, -0.01, -0.05);
       parentContext.controls.update();
       event.preventDefault();
     }
   });
   actionInnerHTML += 'Reset free camera<br>';
   keyInnerHTML += 'Ctrl A<br>';
+
+  parentContext.controls.addEventListener( "change", event => {
+    console.log("controls target: ", parentContext.controls.target);
+    console.log("camera position: ", parentContext.camera.position);
+  });
 
   parentContext.gui.open();
 }
@@ -283,9 +281,8 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
     mujocoRoot.name = "MuJoCo Root"
     parent.scene.add(mujocoRoot);
 
-    // TODO: Use free camera parameters from MuJoCo
-    parent.camera.position.set(-0.6, 0.7, 0.0);
-    parent.controls.target.set(0, 0.0, 0);
+    parent.camera.position.set(-0.5, 0.6, -0.85);
+    parent.controls.target.set(0.08, -0.01, -0.05);
     parent.controls.update();
 
     /** @type {Object.<number, THREE.Group>} */

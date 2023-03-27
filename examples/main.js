@@ -41,11 +41,7 @@ export class RoboPianistDemo {
 
     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 0.001, 100 );
     this.camera.name = 'PerspectiveCamera';
-    this.camera.position.set( -0.6, 0.7, 0.0 );
     this.scene.add(this.camera);
-
-    // this.scene.background = new THREE.Color(0.15, 0.25, 0.35);
-    // this.scene.fog = new THREE.Fog(this.scene.background, 15, 25.5 );
 
     this.ambientLight = new THREE.AmbientLight( 0xffffff, 0.1 );
     this.ambientLight.name = 'AmbientLight';
@@ -61,7 +57,6 @@ export class RoboPianistDemo {
     this.container.appendChild( this.renderer.domElement );
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.target.set(0, 0.7, 0);
     this.controls.panSpeed = 2;
     this.controls.zoomSpeed = 1;
     this.controls.enableDamping = true;
