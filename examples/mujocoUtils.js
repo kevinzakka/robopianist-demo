@@ -32,7 +32,13 @@ export function setupGUI(parentContext) {
       parentContext.simulation.forward();
       parentContext.prevActivated.fill(false);
       parentContext.params.songPaused = false;
+      parentContext.sampler.releaseAll();
     });
+  });
+
+  // Kill sound when tab is not visible.
+  document.addEventListener("visibilitychange", (event) => {
+    if (document.visibilityState != "visible") { parentContext.sampler.releaseAll(); }
   });
 
   // Add a help menu.
@@ -246,11 +252,6 @@ export function setupGUI(parentContext) {
   });
   actionInnerHTML += 'Reset free camera<br>';
   keyInnerHTML += 'Ctrl A<br>';
-
-  parentContext.controls.addEventListener( "change", event => {
-    console.log("controls target: ", parentContext.controls.target);
-    console.log("camera position: ", parentContext.camera.position);
-  });
 
   parentContext.gui.open();
 }
@@ -484,7 +485,7 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
       } else if(bodies[b]){
         bodies[0].add(bodies[b]);
       } else {
-        console.log("Body without Geometry detected; adding to bodies", b, bodies[b]);
+        // console.log("Body without Geometry detected; adding to bodies", b, bodies[b]);
         bodies[b] = new THREE.Group(); bodies[b].name = names[b + 1]; bodies[b].bodyID = b; bodies[b].has_custom_mesh = false;
         bodies[0].add(bodies[b]);
       }

@@ -20,8 +20,10 @@ export class RoboPianistDemo {
   constructor() {
     this.mujoco = mujoco;
 
-    // Activate Audio upon first interaction
-    document.addEventListener('pointerdown', () => { if (Tone.context.state !== "running") { Tone.context.resume(); } });
+    // Activate Audio upon first interaction.
+    document.addEventListener('pointerdown', () => {
+      if (Tone.context.state !== "running") { Tone.context.resume(); }
+    });
 
     // Define Random State Variables
     this.params = { song: "twinkle_twinkle_actions.npy", paused: false, songPaused: false, help: false, ctrlnoiserate: 0.0, ctrlnoisestd: 0.0, keyframeNumber: 0 };
