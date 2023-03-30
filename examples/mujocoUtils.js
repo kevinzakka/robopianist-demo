@@ -245,7 +245,7 @@ export function setupGUI(parentContext) {
   // Can be triggered by pressing ctrl + A.
   document.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.code === 'KeyA') {
-      parentContext.camera.position.set(-0.5, 0.6, -0.85);
+      parentContext.camera.position.set(-0.41, 0.77, -0.75);
       parentContext.controls.target.set(0.08, -0.01, -0.05);
       parentContext.controls.update();
       event.preventDefault();
@@ -283,7 +283,7 @@ export async function loadSceneFromURL(mujoco, filename, parent) {
     mujocoRoot.name = "MuJoCo Root"
     parent.scene.add(mujocoRoot);
 
-    parent.camera.position.set(-0.5, 0.6, -0.85);
+    parent.camera.position.set(-0.41, 0.77, -0.75);
     parent.controls.target.set(0.08, -0.01, -0.05);
     parent.controls.update();
 

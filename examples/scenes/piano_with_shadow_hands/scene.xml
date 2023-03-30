@@ -158,7 +158,8 @@
   <asset>
     <texture name="skybox" type="skybox" builtin="gradient" rgb1="0.20000000000000001 0.20000000000000001 0.20000000000000001" rgb2="0 0 0" mark="random" markrgb="1 1 1" width="800" height="800"/>
     <material name="piano/white" class="piano/" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
-    <material name="piano/black" class="piano/" rgba="0.10000000000000001 0.10000000000000001 0.10000000000000001 1"/>
+    <material name="piano/black" class="piano/" rgba="0.10000000000000001 0.10000000000000001 0.10000000000000001 1" shininess="1" reflectance="0.2"/>
+    <material name="piano/base" class="piano/" rgba="0.1 0.1 0.1 1" shininess="1"/>
     <material name="rh_shadow_hand/black" class="rh_shadow_hand/" specular="0.5" shininess="0.25" rgba="0.16355 0.16355 0.16355 1"/>
     <material name="rh_shadow_hand/gray" class="rh_shadow_hand/" specular="0" shininess="0.25" rgba="0.80847999999999998 0.80847999999999998 0.80847999999999998 1"/>
     <material name="rh_shadow_hand/metallic" class="rh_shadow_hand/" specular="0" shininess="0.25" rgba="0.90000000000000002 0.90000000000000002 0.90000000000000002 1"/>
@@ -200,7 +201,7 @@
     <geom name="floor" size="0 0 .05" type="plane" material="grid" class="/" contype="0" conaffinity="0"/>
     <body name="piano/">
       <body name="piano/base" pos="-0.127 0 0.02">
-        <geom name="piano//unnamed_geom_0" class="piano/" type="box" size="0.050000000000000003 0.61049999999999993 0.02" rgba="0.14999999999999999 0.14999999999999999 0.14999999999999999 1"/>
+        <geom name="piano//unnamed_geom_0" class="piano/" type="box" size="0.050000000000000003 0.61049999999999993 0.02" material="piano/base"/>
       </body>
       <body name="piano/white_key_0" pos="0 -0.59924999999999995 0.01125">
         <geom name="piano/white_key_geom_0" class="piano/white_key"/>
